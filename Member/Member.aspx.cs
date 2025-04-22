@@ -17,14 +17,49 @@ namespace CardDex2._0.Member
     {
         private UserManager manager;
         private List<PokemonCard> userCards;
+
+        protected void Page_init(object sender, EventArgs e)
+        {
+            // Check if the user is logged in
+            //if (Session["username"] == null)
+            //{
+            //    Response.Redirect("~/Login.aspx");
+            //}
+            //else
+            //{
+                //lblUsername.Text = Session["username"].ToString();
+                manager = new UserManager();
+                userCards = manager.GetPokemonCards("Ash");
+                if (userCards.Count == 0)
+                {
+                    lblCollection.Text = "No Cards in your Collection";
+                }
+            //}
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            manager = new UserManager();
-            userCards = manager.GetPokemonCards("Ash");
-            if (userCards.Count == 0)
+            if (IsPostBack)
             {
-                lblCollection.Text = "No Cards in your Collection";
-            }            
+
+            }
+        }
+
+        protected void btnAddCard_click(object sender, EventArgs e)
+        {
+            // Access the selected card's ID from the hidden field
+            string selectedCardId = ViewCards1.SelectedCardId;
+            if (selectedCardId == null)
+            {
+                lblaaaa.Text = "Please select a card to add to your collection.";
+                return;
+            }
+            lblaaaa.Text = $"Selected Card ID: {selectedCardId}";
+
+            if (!string.IsNullOrEmpty(selectedCardId))
+            {
+                lblaaaa.Text = $"Selected Card ID: {selectedCardId}";
+            }
         }
 
         protected void btnToggleAddCard_click(object sender, EventArgs e)
@@ -86,5 +121,7 @@ namespace CardDex2._0.Member
             }
         }
     }
+
+
 
 }

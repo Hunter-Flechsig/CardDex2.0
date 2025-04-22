@@ -3,10 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%@ Register TagName="ViewCards" TagPrefix="uc" src="~/Components/ViewCards.ascx" %>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Bootstrap JS Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -19,8 +15,10 @@
     <div id="addCardContainer" class="add-card-container" runat="server">
         <h4>Add Pokémon Card</h4>
         <div class="inline-form">
-            <asp:TextBox ID="txtPokemonName" runat="server" CssClass="form-control" Placeholder="Name" />
-            <asp:TextBox ID="txtSetName" runat="server" CssClass="form-control" Placeholder="Set" />
+            <asp:TextBox ID="txtPokemonName" runat="server" CssClass="form-control" Placeholder="Name" Text="Charizard"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+            <asp:TextBox ID="txtSetName" runat="server" CssClass="form-control" Placeholder="Set" Text="Base Set"
+                autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
             <asp:Button ID="btnSearchPokemon" runat="server" Text="Search" onClick="btnSearchPokemon_click"
                  OnClientClick="showLoadingSpinner();" CssClass="search-button"/>
 
@@ -34,17 +32,22 @@
                         <div class="loader"></div>
                     </div>
                 </div>
+
+                 <div class="card-container">
+                    <asp:Label ID="lblaaaa" runat="server" Text="Label"></asp:Label>
+                    <uc:ViewCards id="ViewCards1" runat="server" />
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <div class="card-container">
-            <uc:ViewCards id="ViewCards1" runat="server" />
-        </div>
+
+
+        <asp:Button ID="btnAddCard" runat="server" Text="Add Card" onclick="btnAddCard_click"/>
     </div>
     
     <div class="add-card-container">
          <h4>Collection</h4>
          <asp:Label ID="lblCollection" runat="server" CssClass="d-block mb-2" />
-         <uc:ViewCards id="ViewCards2" runat="server" />
+         
     </div>
 
 <style>
@@ -78,6 +81,7 @@
         justify-content: center;
         flex-wrap: wrap;
         margin-bottom: 15px;
+        
     }
 
     .inline-form input[type="text"],

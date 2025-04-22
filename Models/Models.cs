@@ -6,6 +6,7 @@ using System.Web;
 namespace PokeFind.Models
 {
     // class for representing and parsing pokmon card data recieved from PokeFind Service
+    [Serializable]
     public class PokemonCard
     {
         public string Id { get; set; }
@@ -21,6 +22,11 @@ namespace PokeFind.Models
             Name = name;
             Image = image;
             SetName = setName;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} - {Name} - {SetName}";
         }
     }
 

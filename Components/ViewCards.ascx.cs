@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using PokeFind.Models;
 
@@ -10,25 +11,56 @@ namespace CardDex2._0.Components
 {
     public partial class ViewCards : System.Web.UI.UserControl
     {
-        // Private field to store the list of cards
-        private List<PokemonCard> _cards;
+        // Property to get or set the selected card's ID
+        public string SelectedCardId
+        {
+            get { return (string)ViewState["selectedCard"]; }
+            set { ViewState["selectedCard"] = value; }
+        }
 
-        // Public property to get and set the list of cards
+        // Property to hold the list of cards
         public List<PokemonCard> Cards
         {
-            get { return _cards; }  // Return the current list of cards
+            get { return ViewState["Cards"] as List<PokemonCard>; }
             set
             {
-                _cards = value;  // Set the list of cards
-                BindCards();  // Automatically bind the data to the Repeater control
+                ViewState["Cards"] = value;
+                BindCards();
             }
         }
 
-        // Method to bind the cards data to the Repeater control
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            // No need to bind here — controlled via property
+        }
+
+        // Dynamically set card CSS class
+        protected string GetCardCssClass(string cardId)
+        {
+            return cardId == SelectedCardId ? "card selected" : "card";
+        }
+
+        // Bind data to the repeater
         private void BindCards()
         {
-            RepeaterCards.DataSource = _cards;  // Set the Repeater's data source
-            RepeaterCards.DataBind();  // Bind the data to the Repeater control
+            RepeaterCards.DataSource = Cards;
+            RepeaterCards.DataBind();
+        }
+
+        // When a card is clicked
+        protected void cardClicked(object sender, EventArgs e)
+        {
+            var clickedButton = (HtmlButton)sender;
+            var item = (RepeaterItem)clickedButton.NamingContainer;
+
+            var hiddenId = item.FindControl("HiddenCardID") as HiddenField;
+            string cardId = hiddenId?.Value;
+
+            if (!string.IsNullOrEmpty(cardId))
+            {
+                SelectedCardId = cardId;
+                BindCards(); // rebind to apply styling through GetCardCssClass
+            }
         }
     }
 }
