@@ -100,17 +100,18 @@ namespace CardDex2._0.Data
             return cards;
         }
 
-        public void RemovePokemon(string username, string cardId)
+        public FetchReturnType RemovePokemon(string username, string cardId)
         {
             var user = GetUserElement(username);
-            if (user == null) return;
+            if (user == null) return new FetchReturnType(error: "User not found");
 
             var card = user.Element("PokemonCards")
                            ?.Elements("Card")
-                           .FirstOrDefault(c => c.Attribute("id")?.Value == cardId);
+                           .FirstOrDefault(c => c.Attribute("Id").Value == cardId);
 
-            card?.Remove();
+            card.Remove();
             SaveChanges();
+            return new FetchReturnType(success: "Card removed successfully");
         }
 
         private XElement GetUserElement(string username)

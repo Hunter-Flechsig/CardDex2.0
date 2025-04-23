@@ -36,6 +36,13 @@ namespace CardDex2._0.Components
             }
         }
 
+        // Property to set the container height
+        public string ContainerHeight
+        {
+            get { return ViewState["ContainerHeight"] as string ?? "40vh"; }
+            set { ViewState["ContainerHeight"] = value; }
+        }
+
         // Event that fires when a card is selected
         public event EventHandler<CardSelectedEventArgs> CardSelected;
 
@@ -55,6 +62,12 @@ namespace CardDex2._0.Components
         protected string GetCardCssClass(string cardId)
         {
             return cardId == SelectedCardId ? "card selected" : "card";
+        }
+
+        // Get the container style with height
+        protected string GetContainerStyle()
+        {
+            return $"max-height: {ContainerHeight}; overflow-y: auto; padding: 8px; border: 1px solid #ccc; border-radius: 8px; background: #fff; margin: 10px auto;";
         }
 
         // Bind data to the repeater

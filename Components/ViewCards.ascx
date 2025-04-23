@@ -5,7 +5,7 @@
         <asp:AsyncPostBackTrigger ControlID="btnAddCard" EventName="Click" />
     </Triggers>
     <ContentTemplate>
-        <div class="card-container" id="scrollDiv">
+        <div class="card-container" id="scrollDiv_<%= ClientID %>" style="<%= GetContainerStyle() %>">
             <asp:HiddenField ID="hdnScrollPos" runat="server" />
             <asp:HiddenField ID="hdnSelectedCard" runat="server" Value="" />
             <asp:Button ID="btnCardSelected" runat="server" OnClick="cardClicked" Style="display: none" />
@@ -15,7 +15,7 @@
                     <div class="card-grid">
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <div class="unstyled-button" onclick="selectCard('<%# Eval("Id") %>')">
+                    <div class="unstyled-button" onclick="selectCard_<%= ClientID %>('<%# Eval("Id") %>')">
                         <div id='card-<%# Eval("Id") %>' class='<%# GetCardCssClass(Eval("Id").ToString()) %>'>
                             <img src='<%# Eval("Image") %>' alt='<%# Eval("Name") %>' class="card-image" />
                             <h3><%# Eval("Name") %></h3>
@@ -32,9 +32,10 @@
 </asp:UpdatePanel>
 
 <script type="text/javascript">
-    function selectCard(cardId) {
+    // Create a unique function name for this instance
+    function selectCard_<%= ClientID %>(cardId) {
         // Save scroll position
-        var scrollDiv = document.getElementById('scrollDiv');
+        var scrollDiv = document.getElementById('scrollDiv_<%= ClientID %>');
         document.getElementById('<%= hdnScrollPos.ClientID %>').value = scrollDiv.scrollTop;
         
         // Set the selected card ID in hidden field
@@ -47,17 +48,17 @@
     }
 
     // For UpdatePanel partial postbacks
-    function setupScrollHandling() {
+    function setupScrollHandling_<%= ClientID %>() {
         if (typeof Sys !== 'undefined') {
             var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
             pageRequestManager.add_endRequest(function() {
-                restoreScrollPosition();
+                restoreScrollPosition_<%= ClientID %>();
             });
         }
     }
 
-    function restoreScrollPosition() {
-        var scrollDiv = document.getElementById('scrollDiv');
+    function restoreScrollPosition_<%= ClientID %>() {
+        var scrollDiv = document.getElementById('scrollDiv_<%= ClientID %>');
         var savedPosition = document.getElementById('<%= hdnScrollPos.ClientID %>').value;
         if (savedPosition && scrollDiv) {
             setTimeout(function () {
@@ -69,13 +70,13 @@
     // Execute on page load
     if (window.addEventListener) {
         window.addEventListener('load', function () {
-            setupScrollHandling();
-            restoreScrollPosition();
+            setupScrollHandling_<%= ClientID %>();
+            restoreScrollPosition_<%= ClientID %>();
         });
     } else {
         window.attachEvent('onload', function () {
-            setupScrollHandling();
-            restoreScrollPosition();
+            setupScrollHandling_<%= ClientID %>();
+            restoreScrollPosition_<%= ClientID %>();
         });
     }
 </script>

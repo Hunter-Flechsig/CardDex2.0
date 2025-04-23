@@ -15,15 +15,6 @@ namespace CardDex2._0.Member
     {
 
         /// <summary>
-        /// btnToggleAddCard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnToggleAddCard;
-
-        /// <summary>
         /// addCardContainer control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace CardDex2._0.Member
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearchPokemon;
+
+        /// <summary>
+        /// btnAddCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddCard;
 
         /// <summary>
         /// UpdatePanelSearch control.
@@ -96,13 +96,49 @@ namespace CardDex2._0.Member
         protected global::System.Web.UI.WebControls.Label lbladdError;
 
         /// <summary>
-        /// btnAddCard control.
+        /// searchUserCardsName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCard;
+        protected global::System.Web.UI.WebControls.TextBox searchUserCardsName;
+
+        /// <summary>
+        /// searchUserCardsSet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox searchUserCardsSet;
+
+        /// <summary>
+        /// searchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button searchButton;
+
+        /// <summary>
+        /// btnRemoveCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemoveCard;
+
+        /// <summary>
+        /// btnToggleAddCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnToggleAddCard;
 
         /// <summary>
         /// UpdatePanel2 control.
@@ -114,13 +150,13 @@ namespace CardDex2._0.Member
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// lblCollection control.
+        /// lblremoveError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCollection;
+        protected global::System.Web.UI.WebControls.Label lblremoveError;
 
         /// <summary>
         /// ViewCards2 control.
