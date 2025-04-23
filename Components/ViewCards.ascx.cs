@@ -12,13 +12,17 @@ namespace CardDex2._0.Components
 {
     public partial class ViewCards : System.Web.UI.UserControl
     {
-        protected HiddenField hdnScrollPosition;
-
         // Property to get or set the selected card's ID
         public string SelectedCardId
         {
-            get { return (string)ViewState["selectedCard"]; }
-            set { ViewState["selectedCard"] = value; }
+            get { return ViewState["selectedCard"] as string ?? string.Empty; }
+            set
+            {
+                ViewState["selectedCard"] = value;
+                // Also store in the hidden field for consistency
+                if (hdnSelectedCard != null)
+                    hdnSelectedCard.Value = value;
+            }
         }
 
         // Property to hold the list of cards
@@ -32,13 +36,19 @@ namespace CardDex2._0.Components
             }
         }
 
+        // Event that fires when a card is selected
+        public event EventHandler<CardSelectedEventArgs> CardSelected;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Initialize control, bind data, etc.
+                // Initialize control
+                if (!string.IsNullOrEmpty(SelectedCardId) && hdnSelectedCard != null)
+                {
+                    hdnSelectedCard.Value = SelectedCardId;
+                }
             }
-            
         }
 
         // Dynamically set card CSS class
@@ -50,24 +60,64 @@ namespace CardDex2._0.Components
         // Bind data to the repeater
         private void BindCards()
         {
-            RepeaterCards.DataSource = Cards;
-            RepeaterCards.DataBind();
+            if (Cards != null)
+            {
+                RepeaterCards.DataSource = Cards;
+                RepeaterCards.DataBind();
+                UpdatePanelCards.Update();
+            }
         }
 
         // When a card is clicked
         protected void cardClicked(object sender, EventArgs e)
         {
-            var clickedButton = (HtmlButton)sender;
-            var item = (RepeaterItem)clickedButton.NamingContainer;
+            // Get the selected card ID from the hidden field
+            string cardId = hdnSelectedCard.Value;
 
-            var hiddenId = item.FindControl("HiddenCardID") as HiddenField;
-            string cardId = hiddenId?.Value;
-
-            if (!string.IsNullOrEmpty(cardId) && cardId != SelectedCardId)
+            if (!string.IsNullOrEmpty(cardId))
             {
+                // Set the selected card ID
                 SelectedCardId = cardId;
+
+                // Force rebind to update the UI with selection
                 BindCards();
+
+                // Raise event to notify parent page of card selection
+                OnCardSelected(new CardSelectedEventArgs(cardId));
             }
+        }
+
+        // Method to raise the CardSelected event
+        protected virtual void OnCardSelected(CardSelectedEventArgs e)
+        {
+            CardSelected?.Invoke(this, e);
+        }
+
+        // Public method to refresh the display
+        public void RefreshCards()
+        {
+            BindCards();
+        }
+
+        // Custom event args class for card selection
+        public class CardSelectedEventArgs : EventArgs
+        {
+            public string CardId { get; private set; }
+
+            public CardSelectedEventArgs(string cardId)
+            {
+                CardId = cardId;
+            }
+        }
+
+        // Find a card by ID
+        public PokemonCard GetCardById(string cardId)
+        {
+            if (Cards != null)
+            {
+                return Cards.FirstOrDefault(c => c.Id == cardId);
+            }
+            return null;
         }
     }
 }
