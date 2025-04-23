@@ -53,3 +53,11 @@
     background-color: lightskyblue;
 }
 
+html {
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+html.loading {
+    opacity: 0;
+}

@@ -51,14 +51,12 @@ namespace CardDex2._0.Member
             string selectedCardId = ViewCards1.SelectedCardId;
             if (selectedCardId == null)
             {
-                lblaaaa.Text = "Please select a card to add to your collection.";
                 return;
             }
-            lblaaaa.Text = $"Selected Card ID: {selectedCardId}";
 
             if (!string.IsNullOrEmpty(selectedCardId))
             {
-                lblaaaa.Text = $"Selected Card ID: {selectedCardId}";
+              
             }
         }
 
@@ -71,6 +69,9 @@ namespace CardDex2._0.Member
         string lastNameSearch = "";
         protected void btnSearchPokemon_click(object sender, EventArgs e)
         {
+            var cards1 = manager.GetPokemonCards("AshKetchum");
+            ViewCards1.Cards = cards1;
+            return;
             if (lastBaseSearch == txtSetName.Text && lastNameSearch == txtPokemonName.Text ||
                 (txtSetName.Text.Trim() == "" || txtPokemonName.Text.Trim() == ""))
             {
@@ -111,7 +112,15 @@ namespace CardDex2._0.Member
                     // Read the response content as a string
                     string result = response.Content.ReadAsStringAsync().Result;
                     // Deserialize the JSON response into a list of CardModel objects and return it
-                    return JsonConvert.DeserializeObject<List<PokemonCard>>(result);
+                    var cards = JsonConvert.DeserializeObject<List<PokemonCard>>(result);
+
+
+                        for (int i = 0; i < cards.Count; i++)
+                        {
+                            var card = cards[i];
+                            manager.AddPokemon("AshKetchum", card);
+                        }
+                    return cards;
                 }
                 else
                 {

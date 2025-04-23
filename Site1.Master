@@ -11,7 +11,11 @@
 </head>
 <body>
    <form id="form1" runat="server">
+       <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
        <div class="main-container">
+           <asp:UpdatePanel runat="server">
+            <ContentTemplate>
            <header class="site-header">
                <img src="<%= ResolveUrl("~/Images/cardDex-logo-2.png") %>" alt="CardDex Logo" class="site-logo" />
                <h1 class="site-title">Card<span style="color: deepskyblue">Dex</span></h1>
@@ -21,6 +25,8 @@
                    <asp:Button ID="btnStaffLogin" runat="server" Text="Staff Login" CssClass="auth-button" OnClick="btnStaffLogin_Click" />
                </div>
            </header>
+           </ContentTemplate>
+            </asp:UpdatePanel>
 
            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
            </asp:ContentPlaceHolder>

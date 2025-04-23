@@ -56,22 +56,22 @@ namespace CardDex2._0.Data
             SaveChanges();
         }
 
-        public FetchReturnType AddPokemon(string username, string id, string name, string type, int level)
+        public FetchReturnType AddPokemon(string username, PokemonCard card)
         {
             var user = GetUserElement(username);
             if (user == null) return new FetchReturnType(error: "User not found");
 
             var existingCard = user.Element("PokemonCards")
                                    ?.Elements("Card")
-                                   .FirstOrDefault(c => c.Attribute("id")?.Value == id);
+                                   .FirstOrDefault(c => c.Attribute("id")?.Value == card.Id);
 
             if (existingCard != null) return new FetchReturnType(error: "Added card is already in you collection"); // Don't add duplicates
 
             user.Element("PokemonCards").Add(new XElement("Card",
-                new XAttribute("id", id),
-                new XAttribute("name", name),
-                new XAttribute("type", type),
-                new XAttribute("level", level)
+                new XAttribute("Id", card.Id),
+                new XAttribute("Name", card.Name),
+                new XAttribute("Image", card.Image),
+                new XAttribute("SetName", card.SetName)
             ));
 
             SaveChanges();

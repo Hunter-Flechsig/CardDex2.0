@@ -15,15 +15,6 @@ namespace CardDex2._0.Member
     {
 
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
         /// btnToggleAddCard control.
         /// </summary>
         /// <remarks>
@@ -85,15 +76,6 @@ namespace CardDex2._0.Member
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSearchPokemon;
-
-        /// <summary>
-        /// lblaaaa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblaaaa;
 
         /// <summary>
         /// ViewCards1 control.

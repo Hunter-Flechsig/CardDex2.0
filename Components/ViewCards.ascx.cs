@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 using PokeFind.Models;
 
 namespace CardDex2._0.Components
 {
     public partial class ViewCards : System.Web.UI.UserControl
     {
+        protected HiddenField hdnScrollPosition;
+
         // Property to get or set the selected card's ID
         public string SelectedCardId
         {
@@ -31,7 +34,11 @@ namespace CardDex2._0.Components
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // No need to bind here — controlled via property
+            if (!IsPostBack)
+            {
+                // Initialize control, bind data, etc.
+            }
+            
         }
 
         // Dynamically set card CSS class
@@ -56,10 +63,10 @@ namespace CardDex2._0.Components
             var hiddenId = item.FindControl("HiddenCardID") as HiddenField;
             string cardId = hiddenId?.Value;
 
-            if (!string.IsNullOrEmpty(cardId))
+            if (!string.IsNullOrEmpty(cardId) && cardId != SelectedCardId)
             {
                 SelectedCardId = cardId;
-                BindCards(); // rebind to apply styling through GetCardCssClass
+                BindCards();
             }
         }
     }

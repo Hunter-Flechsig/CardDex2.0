@@ -24,6 +24,15 @@ namespace CardDex2._0.Components
         protected global::System.Web.UI.UpdatePanel UpdatePanelCards;
 
         /// <summary>
+        /// hdnScrollPos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnScrollPos;
+
+        /// <summary>
         /// RepeaterCards control.
         /// </summary>
         /// <remarks>

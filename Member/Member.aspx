@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
+﻿<%@ Page Title="Member"  MaintainScrollPositionOnPostback="true" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,9 +6,8 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div style="display: flex; justify-content: center; margin-top: 10px;">
-        <asp:Button runat="server" id="btnToggleAddCard" class="search-button" onclick="btnToggleAddCard_click" Text="Toggle Add Cards" />
+        <asp:Button runat="server" id="btnToggleAddCard" class="search-button" onClick="btnToggleAddCard_click" Text="Toggle Add Cards" />
     </div>
     
     <!-- Expandable Search Area -->
@@ -33,10 +32,7 @@
                     </div>
                 </div>
 
-                 <div class="card-container">
-                    <asp:Label ID="lblaaaa" runat="server" Text="Label"></asp:Label>
-                    <uc:ViewCards id="ViewCards1" runat="server" />
-                </div>
+                <uc:ViewCards id="ViewCards1" runat="server" />
             </ContentTemplate>
         </asp:UpdatePanel>
 
@@ -158,8 +154,10 @@
 
     if (spinner) spinner.style.display = "inline-block";
     if (label) label.innerText = "Searching...";
-}
+    }
 </script>
+
+
     
 </asp:Content>
 
