@@ -3,47 +3,9 @@
   <User username="AshKetchum" password="Pikachu123">
     <PokemonCards>
       <Card Id="base4-4" Name="Charizard" Image="https://images.pokemontcg.io/base4/4.png" SetName="Base Set 2" />
-      <Card Id="base1-4" Name="Charizard" Image="https://images.pokemontcg.io/base1/4.png" SetName="Base" />
       <Card Id="ecard1-6" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/6.png" SetName="Expedition Base Set" />
-      <Card Id="bw7-20" Name="Charizard" Image="https://images.pokemontcg.io/bw7/20.png" SetName="Boundaries Crossed" />
-      <Card Id="sm3-20" Name="Charizard-GX" Image="https://images.pokemontcg.io/sm3/20.png" SetName="Burning Shadows" />
-      <Card Id="sm10-20" Name="Reshiram &amp; Charizard-GX" Image="https://images.pokemontcg.io/sm10/20.png" SetName="Unbroken Bonds" />
-      <Card Id="xyp-XY17" Name="Charizard-EX" Image="https://images.pokemontcg.io/xyp/XY17.png" SetName="XY Black Star Promos" />
-      <Card Id="xyp-XY29" Name="Charizard-EX" Image="https://images.pokemontcg.io/xyp/XY29.png" SetName="XY Black Star Promos" />
-      <Card Id="dpp-DP45" Name="Charizard G LV.X" Image="https://images.pokemontcg.io/dpp/DP45.png" SetName="DP Black Star Promos" />
-      <Card Id="ecard1-39" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/39.png" SetName="Expedition Base Set" />
       <Card Id="ecard1-40" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/40.png" SetName="Expedition Base Set" />
-      <Card Id="swshp-SWSH050" Name="Charizard V" Image="https://images.pokemontcg.io/swshp/SWSH050.png" SetName="SWSH Black Star Promos" />
-      <Card Id="smp-SM60" Name="Charizard-GX" Image="https://images.pokemontcg.io/smp/SM60.png" SetName="SM Black Star Promos" />
-      <Card Id="swshp-SWSH066" Name="Charizard" Image="https://images.pokemontcg.io/swshp/SWSH066.png" SetName="SWSH Black Star Promos" />
-      <Card Id="xyp-XY121" Name="Charizard-EX" Image="https://images.pokemontcg.io/xyp/XY121.png" SetName="XY Black Star Promos" />
-      <Card Id="smp-SM158" Name="Charizard" Image="https://images.pokemontcg.io/smp/SM158.png" SetName="SM Black Star Promos" />
-      <Card Id="sm3-150" Name="Charizard-GX" Image="https://images.pokemontcg.io/sm3/150.png" SetName="Burning Shadows" />
-      <Card Id="smp-SM195" Name="Charizard-GX" Image="https://images.pokemontcg.io/smp/SM195.png" SetName="SM Black Star Promos" />
-      <Card Id="smp-SM201" Name="Reshiram &amp; Charizard-GX" Image="https://images.pokemontcg.io/smp/SM201.png" SetName="SM Black Star Promos" />
-      <Card Id="smp-SM211" Name="Charizard-GX" Image="https://images.pokemontcg.io/smp/SM211.png" SetName="SM Black Star Promos" />
-      <Card Id="sm10-194" Name="Reshiram &amp; Charizard-GX" Image="https://images.pokemontcg.io/sm10/194.png" SetName="Unbroken Bonds" />
-      <Card Id="smp-SM226" Name="Charizard" Image="https://images.pokemontcg.io/smp/SM226.png" SetName="SM Black Star Promos" />
-      <Card Id="smp-SM230" Name="Charizard &amp; Braixen-GX" Image="https://images.pokemontcg.io/smp/SM230.png" SetName="SM Black Star Promos" />
-      <Card Id="sm10-217" Name="Reshiram &amp; Charizard-GX" Image="https://images.pokemontcg.io/sm10/217.png" SetName="Unbroken Bonds" />
-      <Card Id="smp-SM247" Name="Reshiram &amp; Charizard-GX" Image="https://images.pokemontcg.io/smp/SM247.png" SetName="SM Black Star Promos" />
-      <Card Id="swshp-SWSH133" Name="Lance's Charizard V" Image="https://images.pokemontcg.io/swshp/SWSH133.png" SetName="SWSH Black Star Promos" />
-      <Card Id="swsh9-17" Name="Charizard V" Image="https://images.pokemontcg.io/swsh9/17.png" SetName="Brilliant Stars" />
-      <Card Id="swsh9-18" Name="Charizard VSTAR" Image="https://images.pokemontcg.io/swsh9/18.png" SetName="Brilliant Stars" />
-      <Card Id="swsh9-153" Name="Charizard V" Image="https://images.pokemontcg.io/swsh9/153.png" SetName="Brilliant Stars" />
-      <Card Id="swsh9-154" Name="Charizard V" Image="https://images.pokemontcg.io/swsh9/154.png" SetName="Brilliant Stars" />
-      <Card Id="swsh9-174" Name="Charizard VSTAR" Image="https://images.pokemontcg.io/swsh9/174.png" SetName="Brilliant Stars" />
-      <Card Id="swshp-SWSH260" Name="Charizard V" Image="https://images.pokemontcg.io/swshp/SWSH260.png" SetName="SWSH Black Star Promos" />
-      <Card Id="swshp-SWSH261" Name="Charizard VMAX" Image="https://images.pokemontcg.io/swshp/SWSH261.png" SetName="SWSH Black Star Promos" />
-      <Card Id="swshp-SWSH262" Name="Charizard VSTAR" Image="https://images.pokemontcg.io/swshp/SWSH262.png" SetName="SWSH Black Star Promos" />
-      <Card Id="swshp-SWSH075" Name="Special Delivery Charizard" Image="https://images.pokemontcg.io/swshp/SWSH075.png" SetName="SWSH Black Star Promos" />
-      <Card Id="svp-56" Name="Charizard ex" Image="https://images.pokemontcg.io/svp/56.png" SetName="Scarlet &amp; Violet Black Star Promos" />
-      <Card Id="svp-74" Name="Charizard ex" Image="https://images.pokemontcg.io/svp/74.png" SetName="Scarlet &amp; Violet Black Star Promos" />
-      <Card Id="svp-161" Name="Charizard ex" Image="https://images.pokemontcg.io/svp/161.png" SetName="Scarlet &amp; Violet Black Star Promos" />
-      <Card Id="base4-4" Name="Charizard" Image="https://images.pokemontcg.io/base4/4.png" SetName="Base Set 2" />
-      <Card Id="ecard1-6" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/6.png" SetName="Expedition Base Set" />
       <Card Id="ecard1-39" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/39.png" SetName="Expedition Base Set" />
-      <Card Id="ecard1-40" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/40.png" SetName="Expedition Base Set" />
     </PokemonCards>
   </User>
 </Users>

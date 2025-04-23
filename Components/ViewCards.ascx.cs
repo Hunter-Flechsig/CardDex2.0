@@ -16,8 +16,8 @@ namespace CardDex2._0.Components
         public string SelectedCardId
         {
             get { return ViewState["selectedCard"] as string ?? string.Empty; }
-            set
-            {
+            set 
+            { 
                 ViewState["selectedCard"] = value;
                 // Also store in the hidden field for consistency
                 if (hdnSelectedCard != null)
@@ -73,15 +73,15 @@ namespace CardDex2._0.Components
         {
             // Get the selected card ID from the hidden field
             string cardId = hdnSelectedCard.Value;
-
+            
             if (!string.IsNullOrEmpty(cardId))
             {
                 // Set the selected card ID
                 SelectedCardId = cardId;
-
+                
                 // Force rebind to update the UI with selection
                 BindCards();
-
+                
                 // Raise event to notify parent page of card selection
                 OnCardSelected(new CardSelectedEventArgs(cardId));
             }

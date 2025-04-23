@@ -32,9 +32,6 @@
 </asp:UpdatePanel>
 
 <script type="text/javascript">
-    var isScrolling = false;
-    var scrollTimeout;
-
     function selectCard(cardId) {
         // Save scroll position
         var scrollDiv = document.getElementById('scrollDiv');
@@ -45,27 +42,16 @@
         
         // Trigger server-side event
         __doPostBack('<%= btnCardSelected.UniqueID %>', '');
+        
+        // No need to update UI here as it will be rerendered by server
     }
 
     // For UpdatePanel partial postbacks
     function setupScrollHandling() {
         if (typeof Sys !== 'undefined') {
             var pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
-            pageRequestManager.add_beginRequest(function() {
-                // Set scrolling flag when postback begins
-                isScrolling = true;
-            });
             pageRequestManager.add_endRequest(function() {
-                // Clear any existing timeout
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                // Restore scroll position after a short delay
-                scrollTimeout = setTimeout(function() {
-                    restoreScrollPosition();
-                    isScrolling = false;
-                }, 50);
+                restoreScrollPosition();
             });
         }
     }
@@ -73,8 +59,10 @@
     function restoreScrollPosition() {
         var scrollDiv = document.getElementById('scrollDiv');
         var savedPosition = document.getElementById('<%= hdnScrollPos.ClientID %>').value;
-        if (savedPosition && scrollDiv && !isScrolling) {
-            scrollDiv.scrollTop = parseInt(savedPosition);
+        if (savedPosition && scrollDiv) {
+            setTimeout(function () {
+                scrollDiv.scrollTop = parseInt(savedPosition);
+            }, 10);
         }
     }
 
@@ -168,5 +156,6 @@
         border: 1px solid #ccc;
         border-radius: 8px;
         background: #fff;
+        margin: 10px auto;
     }
 </style>

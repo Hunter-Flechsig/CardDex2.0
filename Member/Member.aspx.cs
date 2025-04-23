@@ -29,7 +29,7 @@ namespace CardDex2._0.Member
             //{
                 //lblUsername.Text = Session["username"].ToString();
                 manager = new UserManager();
-                userCards = manager.GetPokemonCards("Ash");
+                userCards = manager.GetPokemonCards("AshKetchum");
                 if (userCards.Count == 0)
                 {
                     lblCollection.Text = "No Cards in your Collection";
@@ -39,25 +39,60 @@ namespace CardDex2._0.Member
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
+            if (!IsPostBack)
             {
-
+                lbladdError.Visible = false;
+            }
+            else
+            {
+                // Show label only if ViewState flag is set
+                lbladdError.Visible = ViewState["ShowLabelOnce"] as bool? == true;
             }
         }
 
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            ViewState["ShowLabelOnce"] = false;
+        }
+
+
         protected void btnAddCard_click(object sender, EventArgs e)
         {
-            // Access the selected card's ID from the hidden field
             string selectedCardId = ViewCards1.SelectedCardId;
-            if (selectedCardId == null)
+            List<PokemonCard> searchCards = ViewCards1.Cards;
+            if (string.IsNullOrEmpty(selectedCardId))
             {
+                lbladdError.ForeColor = System.Drawing.Color.Red; // Set label color to red for error
+                setErrorLabel("Please select a card to add.", lbladdError);
                 return;
             }
 
-            if (!string.IsNullOrEmpty(selectedCardId))
+            PokemonCard selectedCard = searchCards.FirstOrDefault(card => card.Id == selectedCardId);
+            if (selectedCard != null)
             {
-              
+                FetchReturnType result = manager.AddPokemon("AshKetchum", selectedCard);
+                if (result.success != null)
+                {
+                    lbladdError.ForeColor = System.Drawing.Color.Green; // Set label color to green for success
+                    setErrorLabel($"Added {selectedCard.Name} to your collection.", lbladdError);
+                    userCards = manager.GetPokemonCards("AshKetchum");
+                }
+                else if (result.error != null)
+                {
+                    setErrorLabel(result.error, lbladdError);
+                    lbladdError.ForeColor = System.Drawing.Color.Red; // Set label color to red for error
+                }
             }
+        }
+
+        private void setErrorLabel(string text, Label label)
+        {
+            ViewState["ShowLabelOnce"] = true;
+            label.Text = text;
+            label.Visible = true;
+
+            // Inject JavaScript to hide it after 5 seconds (5000ms)
+            ScriptManager.RegisterStartupScript(this, GetType(), "HideLabel", "hideLabelAfterDelay('" + label.ClientID + "', 1000);", true);
         }
 
         protected void btnToggleAddCard_click(object sender, EventArgs e)
@@ -69,9 +104,6 @@ namespace CardDex2._0.Member
         string lastNameSearch = "";
         protected void btnSearchPokemon_click(object sender, EventArgs e)
         {
-            var cards1 = manager.GetPokemonCards("AshKetchum");
-            ViewCards1.Cards = cards1;
-            return;
             if (lastBaseSearch == txtSetName.Text && lastNameSearch == txtPokemonName.Text ||
                 (txtSetName.Text.Trim() == "" || txtPokemonName.Text.Trim() == ""))
             {
@@ -113,13 +145,6 @@ namespace CardDex2._0.Member
                     string result = response.Content.ReadAsStringAsync().Result;
                     // Deserialize the JSON response into a list of CardModel objects and return it
                     var cards = JsonConvert.DeserializeObject<List<PokemonCard>>(result);
-
-
-                        for (int i = 0; i < cards.Count; i++)
-                        {
-                            var card = cards[i];
-                            manager.AddPokemon("AshKetchum", card);
-                        }
                     return cards;
                 }
                 else

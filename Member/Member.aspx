@@ -32,18 +32,23 @@
                     </div>
                 </div>
 
-                <uc:ViewCards id="ViewCards1" runat="server" />
+                <uc:ViewCards id="ViewCards1" runat="server"/>
+                <asp:Label ID="lbladdError" runat="server" Text="" CssClass="error-label"></asp:Label>
             </ContentTemplate>
         </asp:UpdatePanel>
 
 
-        <asp:Button ID="btnAddCard" runat="server" Text="Add Card" onclick="btnAddCard_click"/>
+        <asp:Button ID="btnAddCard" runat="server" Text="Add Card" onclick="btnAddCard_click" CssClass="search-button" Style="display: inline-block; width: auto; margin: 0 auto; margin-top:10px"/>
     </div>
     
     <div class="add-card-container">
          <h4>Collection</h4>
-         <asp:Label ID="lblCollection" runat="server" CssClass="d-block mb-2" />
-         
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+                <asp:Label ID="lblCollection" runat="server" CssClass="d-block mb-2" />
+                <uc:ViewCards ID="ViewCards2" runat="server" />
+             </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 
 <style>
@@ -57,7 +62,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-                text-align: center;
+        text-align: center;
     }
 
     .card-container {
@@ -69,6 +74,11 @@
         background: #fff;
     }
 
+    .error-label {
+        font-weight: bold;
+        text-align: center;
+        transition: opacity 1s ease;
+    }
 
     .inline-form {
         display: flex;
@@ -87,13 +97,13 @@
     }
 
     h4 {
-        margin-bottom: 15px;
+        margin-top: 0; /* Remove top margin */
+        margin-bottom: 10px; /* Reduced bottom margin */
         font-size: 1.25rem;
     }
 
     .card-container label {
         display: block;
-        margin-top: 10px;
         font-weight: bold;
     }
 
@@ -157,8 +167,19 @@
     }
 </script>
 
-
-    
+<script>
+    function hideLabelAfterDelay(id, delay) {
+        setTimeout(function () {
+            var label = document.getElementById(id);
+            if (label) {
+                label.style.opacity = '0';
+                setTimeout(function () {
+                    label.style.display = 'none';
+                }, 1000); // Wait for fade to finish
+            }
+        }, delay);
+    }
+</script>
 </asp:Content>
 
 

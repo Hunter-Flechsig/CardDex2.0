@@ -63,7 +63,7 @@ namespace CardDex2._0.Data
 
             var existingCard = user.Element("PokemonCards")
                                    ?.Elements("Card")
-                                   .FirstOrDefault(c => c.Attribute("id")?.Value == card.Id);
+                                   .FirstOrDefault(c => c.Attribute("Id")?.Value == card.Id);
 
             if (existingCard != null) return new FetchReturnType(error: "Added card is already in you collection"); // Don't add duplicates
 

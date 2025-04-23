@@ -87,6 +87,15 @@ namespace CardDex2._0.Member
         protected global::CardDex2._0.Components.ViewCards ViewCards1;
 
         /// <summary>
+        /// lbladdError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbladdError;
+
+        /// <summary>
         /// btnAddCard control.
         /// </summary>
         /// <remarks>
@@ -96,6 +105,15 @@ namespace CardDex2._0.Member
         protected global::System.Web.UI.WebControls.Button btnAddCard;
 
         /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
+        /// <summary>
         /// lblCollection control.
         /// </summary>
         /// <remarks>
@@ -103,5 +121,14 @@ namespace CardDex2._0.Member
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCollection;
+
+        /// <summary>
+        /// ViewCards2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CardDex2._0.Components.ViewCards ViewCards2;
     }
 }
