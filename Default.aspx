@@ -4,7 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div>
         <h1>
-            Service Directory
+            Pokemon News
         </h1>
+
+        <h2>
+            Service Directory
+        </h2>
     </div>
 </asp:Content>

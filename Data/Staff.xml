@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Users>
-  <User username="AshKetchum" password="Pikachu123">
-    <PokemonCards>
-      <Card Id="sm3-20" Name="Charizard-GX" Image="https://images.pokemontcg.io/sm3/20.png" SetName="Burning Shadows" />
-      <Card Id="base4-4" Name="Charizard" Image="https://images.pokemontcg.io/base4/4.png" SetName="Base Set 2" />
-      <Card Id="ecard1-6" Name="Charizard" Image="https://images.pokemontcg.io/ecard1/6.png" SetName="Expedition Base Set" />
-      <Card Id="ecard1-124" Name="Pikachu" Image="https://images.pokemontcg.io/ecard1/124.png" SetName="Expedition Base Set" />
-      <Card Id="base4-87" Name="Pikachu" Image="https://images.pokemontcg.io/base4/87.png" SetName="Base Set 2" />
-    </PokemonCards>
+  <User username="TA" password="Cse445!">
   </User>
 </Users>

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClassLibrary1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ClassLibrary1.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -71,18 +75,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClassLibrary1.dll" />
+    <Content Include="Components\CaptchaControl.ascx" />
     <Content Include="Components\ViewCards.ascx" />
+    <Content Include="Data\Staff.xml" />
     <Content Include="Data\Members.xml" />
     <Content Include="Default.aspx" />
     <Content Include="Images\cardDex-logo-2.png" />
     <Content Include="Member\Member.aspx" />
     <Content Include="Member\MemberLogin.aspx" />
     <Content Include="Member\MemberRegister.aspx" />
+    <Content Include="Staff\StaffLogin.aspx" />
     <Content Include="Staff\Staff.aspx" />
     <Content Include="Styles\site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\CaptchaControl.ascx.cs">
+      <DependentUpon>CaptchaControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\CaptchaControl.ascx.designer.cs">
+      <DependentUpon>CaptchaControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Components\ViewCards.ascx.cs">
       <DependentUpon>ViewCards.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,6 +142,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\StaffLogin.aspx.cs">
+      <DependentUpon>StaffLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\StaffLogin.aspx.designer.cs">
+      <DependentUpon>StaffLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Staff.aspx.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
