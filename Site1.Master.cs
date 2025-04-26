@@ -26,7 +26,8 @@ namespace CardDex2._0
 
         protected void btnStaffLogin_Click(object sender, EventArgs e)
         {
-
+            // change to login aspx eventually
+            Response.Redirect("/Staff/Staff.aspx");
         }
     }
 }
