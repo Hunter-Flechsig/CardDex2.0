@@ -74,6 +74,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\CaptchaControl.ascx" />
     <Content Include="Components\ViewCards.ascx" />
     <None Include="Connected Services\NewsFocus\NewsFocusService.disco" />
     <None Include="Connected Services\NewsFocus\configuration91.svcinfo" />

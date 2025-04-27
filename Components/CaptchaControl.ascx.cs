@@ -18,6 +18,7 @@ namespace Assignment_5
             // Makes sure that the Captcha Is Being Loaded for the first time and is not reloaded wwhen clicking on verify
             if (!IsPostBack)
             {
+                Session["CaptchaResult"] = false;
                 GenerateCaptcha();
             }
         }
@@ -49,7 +50,7 @@ namespace Assignment_5
             const string chars = "QWERWTYUIOPASDDFGHJKLZXCVBNM0123456789";
             Random random = new Random();
             string randomCode = "";
-            for (int ii = 0; ii < 3; ii++)
+            for (int ii = 0; ii <5; ii++)
             {
                 // Selects a random number within the length of chars to pick a char from chars
                 randomCode += chars[random.Next(chars.Length)];
@@ -63,10 +64,12 @@ namespace Assignment_5
             // Click the button and checks if the captcha is correct, if not, create a new Captcha Image
             if (currentAttempt == ((string)Session["CaptchaCode"]))
             {
+                Session["CaptchaResult"] = true;
                 ResultLabel.Text = "Correct!";
             }
             else
             {
+                Session["CaptchaResult"] = false;
                 ResultLabel.Text = "Incorrect! :(";
                 GenerateCaptcha();
             }

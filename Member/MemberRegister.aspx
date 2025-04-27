@@ -15,6 +15,7 @@
         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <cse:CaptchaControl ID="UserControl" runat="server" />
-        <asp:Button ID="btnLogin" runat="server" Text="Log In" OnClick="btnLogin_Click" />
+        <br />
+        <asp:Button ID="btnLogin" runat="server" Text="Register" OnClick="btnLogin_Click" />
     </div>
 </asp:Content>
