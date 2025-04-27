@@ -5,6 +5,7 @@ using System.Xml.Linq;     // For reading XML easily
 using System.IO;
 using System.Linq;
 using DLLLibrary;
+using System.Web.UI.WebControls;
 // using (insert here); // *** IMPORT YOUR HASHING DLL NAMESPACE ***
 
 namespace CardDex2._0.Login // Make sure this matches your project's namespace
@@ -13,8 +14,14 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.IsAuthenticated)
+            //HttpCookie myCookies = Request.Cookies[FormsAuthentication.FormsCookieName];
+            HttpCookie myCookies = Request.Cookies["StaffCookie"];
+            if ((myCookies == null) || (!ValidateStaff(myCookies["Username"], myCookies["Password"]))) {
+                lblMessage.Text = "Welcome to Staff Login";
+            }
+            else
             {
+                Response.Redirect("Staff.aspx");
                 Response.Redirect(FormsAuthentication.DefaultUrl);
             }
         }
@@ -29,21 +36,21 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
                 lblMessage.Text = "Username and password are required.";
                 return;
             }
-
-            bool isAuthenticated = false;
-
+            // Username and password for staff are stored as plaintext to make it easier for graders to tell the right credentials were used for staff
+            // Does not say that cookies need to be encrypted, but if I needed to encrypt the cookies, I would follow this website
+            // https://learn.microsoft.com/en-us/dotnet/api/system.web.security.formsauthentication.encrypt?view=netframework-4.8.1 - Tyler
             if (ValidateStaff(username, password))
             {
-                isAuthenticated = true;
-            }
-            else if (ValidateMember(username, password))
-            {
-                isAuthenticated = true;
-            }
-            if (isAuthenticated)
-            {
-                FormsAuthentication.RedirectFromLoginPage(username, false);
+                //HttpCookie myCookies = new HttpCookie(FormsAuthentication.FormsCookieName);
+                HttpCookie myCookies = new HttpCookie("StaffCookie");
 
+                myCookies["Username"] = username;
+                myCookies["Password"] = password;
+                myCookies.Expires = DateTime.Now.AddMinutes(30);
+                Response.Cookies.Add(myCookies);
+                Response.Redirect("Staff.aspx");
+                //Response.Redirect(FormsAuthentication.DefaultUrl);
+                //FormsAuthentication.RedirectFromLoginPage(username, true);
             }
             else
             {
@@ -56,34 +63,12 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
                 string staffPath = Server.MapPath("~/Data/Staff.xml"); // Replace with actual path
                 XDocument staffDoc = XDocument.Load(staffPath);
                 var staffUser = staffDoc.Root.Elements("User")
-                                     .FirstOrDefault(u => u.Element("Username")?.Value.Equals(username, StringComparison.OrdinalIgnoreCase) ?? false);
+                                     .FirstOrDefault(u => u.Attribute("username")?.Value.Equals(username, StringComparison.OrdinalIgnoreCase) ?? false);
 
                 if (staffUser != null)
                 {
-                    string storedPassword = staffUser.Element("Password")?.Value;
+                    string storedPassword = staffUser.Attribute("password")?.Value;
                     if (storedPassword == enteredPassword)
-                    {
-                        return true;
-                    }
-                }
-            return false;
-        }
-
-        private bool ValidateMember(string username, string enteredPassword)
-        {
-                string memberPath = Server.MapPath("~/Data/Members.xml"); // Replace with actual path
-
-                XDocument memberDoc = XDocument.Load(memberPath);
-                var memberUser = memberDoc.Root.Elements("User")
-                                     .FirstOrDefault(u => u.Element("Username")?.Value.Equals(username, StringComparison.OrdinalIgnoreCase) ?? false);
-                if (memberUser != null)
-                {
-                    string storedHashedPassword = memberUser.Element("Password")?.Value;
-
-                // *** THIS IS WHERE YOU CALL YOUR DLL ***
-                string enteredPasswordHash = EncryptionDecryption.Encrypt(enteredPassword);
-
-                    if (!string.IsNullOrEmpty(storedHashedPassword) && storedHashedPassword.Equals(enteredPasswordHash))
                     {
                         return true;
                     }

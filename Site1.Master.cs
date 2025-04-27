@@ -21,13 +21,12 @@ namespace CardDex2._0
 
         protected void btnMemberLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Member/Member.aspx");
+            Response.Redirect("/Member/MemberLogin.aspx");
         }
 
         protected void btnStaffLogin_Click(object sender, EventArgs e)
         {
-            // change to login aspx eventually
-            Response.Redirect("/Staff/Staff.aspx");
+            Response.Redirect("/Staff/StaffLogin.aspx");
         }
     }
 }

@@ -18,9 +18,11 @@ namespace CardDex2._0.Member
     {
         private UserManager manager;
         private List<PokemonCard> userCards;
+        private HttpCookie myCookies;
 
         protected void Page_init(object sender, EventArgs e)
         {
+            myCookies = Request.Cookies["MemberCookie"];
             // Check if the user is logged in
             //if (Session["username"] == null)
             //{
@@ -28,20 +30,21 @@ namespace CardDex2._0.Member
             //}
             //else
             //{
-                //lblUsername.Text = Session["username"].ToString();
-                manager = new UserManager();
-                userCards = manager.GetPokemonCards("AshKetchum");
-                if (userCards.Count == 0)
-                {
-                    lblremoveError.Text = "No Cards in your Collection";
-                }
-                else
-                {
-                    ViewCards2.Cards = userCards;
-                }
-                ViewCards1.ContainerHeight = "40vh"; // Set the height of the card container
-                ViewCards2.ContainerHeight = "70vh"; // Set the height of the card container
-                addCardContainer.Visible = false;
+            //lblUsername.Text = Session["username"].ToString();
+            manager = new UserManager();
+            //userCards = manager.GetPokemonCards("AshKetchum");
+            userCards = manager.GetPokemonCards(myCookies["Username"]);
+            if (userCards.Count == 0)
+            {
+                lblremoveError.Text = "No Cards in your Collection";
+            }
+            else
+            {
+                ViewCards2.Cards = userCards;
+            }
+            ViewCards1.ContainerHeight = "40vh"; // Set the height of the card container
+            ViewCards2.ContainerHeight = "70vh"; // Set the height of the card container
+            addCardContainer.Visible = false;
             //}
         }
 
@@ -80,11 +83,13 @@ namespace CardDex2._0.Member
             PokemonCard selectedCard = searchCards.FirstOrDefault(card => card.Id == selectedCardId);
             if (selectedCard != null)
             {
-                FetchReturnType result = manager.AddPokemon("AshKetchum", selectedCard);
+                //FetchReturnType result = manager.AddPokemon("AshKetchum", selectedCard);
+                FetchReturnType result = manager.AddPokemon(myCookies["Username"], selectedCard);
                 if (result.success != null)
                 {
                     setErrorLabel($"Added {selectedCard.Name} to your collection.", lbladdError, Color.Green);
-                    userCards = manager.GetPokemonCards("AshKetchum");
+                    //userCards = manager.GetPokemonCards("AshKetchum");
+                    userCards = manager.GetPokemonCards(myCookies["Username"]);
                     ViewCards2.Cards = userCards;
                 }
                 else if (result.error != null)
@@ -105,7 +110,8 @@ namespace CardDex2._0.Member
             // Get all user cards if not already loaded
             if (userCards == null)
             {
-                userCards = manager.GetPokemonCards("AshKetchum");
+                //userCards = manager.GetPokemonCards("AshKetchum");
+                userCards = manager.GetPokemonCards(myCookies["Username"]);
             }
 
             // Filter cards based on search criteria
@@ -141,7 +147,7 @@ namespace CardDex2._0.Member
 
         private void setErrorLabel(string text, Label label, Color color)
         {
-            ViewState["ShowLabelOnce_"+label.ID] = true;
+            ViewState["ShowLabelOnce_" + label.ID] = true;
             label.Text = text;
             label.Visible = true;
             label.ForeColor = color; // Set label color based on the error type
@@ -180,7 +186,8 @@ namespace CardDex2._0.Member
         }
 
         protected void btnRemoveCard_click(object sender, EventArgs e)
-        {;
+        {
+            ;
             string selectedCardId = ViewCards2.SelectedCardId;
             List<PokemonCard> userCards = ViewCards2.Cards;
             if (string.IsNullOrEmpty(selectedCardId))
@@ -189,7 +196,8 @@ namespace CardDex2._0.Member
                 return;
             }
 
-            FetchReturnType res = manager.RemovePokemon("AshKetchum", selectedCardId);
+            //FetchReturnType res = manager.RemovePokemon("AshKetchum", selectedCardId);
+            FetchReturnType res = manager.RemovePokemon(myCookies["Username"], selectedCardId);
 
             if (res.error != null)
             {
@@ -198,7 +206,8 @@ namespace CardDex2._0.Member
             else if (res.success != null)
             {
                 setErrorLabel(res.success, lblremoveError, Color.Green);
-                userCards = manager.GetPokemonCards("AshKetchum");
+                //userCards = manager.GetPokemonCards("AshKetchum");
+                userCards = manager.GetPokemonCards(myCookies["Username"]);
                 ViewCards2.Cards = userCards;
             }
 
@@ -216,7 +225,7 @@ namespace CardDex2._0.Member
             using (HttpClient client = new HttpClient())
             {
                 // Send the GET request and wait for the response
-                HttpResponseMessage response =  client.GetAsync(url).Result;
+                HttpResponseMessage response = client.GetAsync(url).Result;
 
                 // Check if the response was successful
                 if (response.IsSuccessStatusCode)

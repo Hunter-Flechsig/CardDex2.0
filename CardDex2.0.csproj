@@ -178,8 +178,22 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\NewsFocus\Service1.wsdl" />
+    <Content Include="Member\Webl.config" />
+    <None Include="Member\Webl.Debug.config">
+      <DependentUpon>Webl.config</DependentUpon>
+    </None>
+    <None Include="Member\Webl.Release.config">
+      <DependentUpon>Webl.config</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
+    <Content Include="Staff\Webl.config" />
+    <None Include="Staff\Webl.Debug.config">
+      <DependentUpon>Webl.config</DependentUpon>
+    </None>
+    <None Include="Staff\Webl.Release.config">
+      <DependentUpon>Webl.config</DependentUpon>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
