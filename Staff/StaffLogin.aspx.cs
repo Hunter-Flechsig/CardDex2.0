@@ -22,7 +22,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
             else
             {
                 Response.Redirect("Staff.aspx");
-                Response.Redirect(FormsAuthentication.DefaultUrl);
+                //Response.Redirect(FormsAuthentication.DefaultUrl);
             }
         }
 

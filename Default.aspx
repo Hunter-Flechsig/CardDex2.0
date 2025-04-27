@@ -45,19 +45,19 @@
                 <td>Tyler Nguyen</td>
                 <td>WSDL Web Service</td>
                 <td>NewsFocus Service - A service that returns links to news related to a topic - EndPoint: <a href="http://webstrar46.fulton.asu.edu/page10/NewsFocusService.svc">http://webstrar46.fulton.asu.edu/page10/NewsFocusService.svc</a></td>
-                <td>Retrieves information from GDELT API; TryIt Page at: <a href="http://webstrar46.fulton.asu.edu/page10/">http://webstrar46.fulton.asu.edu/page10/</a>. Used in current page.</td>
+                <td>Retrieves links from GDELT API; public string[] newsFocus(string[] topics); Used in current page.</td>
             </tr>
             <tr>
                 <td>Tyler Nguyen</td>
                 <td>Captcha User Control</td>
-                <td>Used To Verify If The User Registering is a Bot</td>
-                <td>Used in Member Register</td>
+                <td>Used To Verify If The User Registering is a Bot or user</td>
+                <td>Used in <a href="/Member/MemberRegister.aspx">Member Register</a></td>
             </tr>
             <tr>
                 <td>Tyler Nguyen</td>
                 <td>DLL class library for Encrypting</td>
                 <td>Uses Symmetric Encryption to Encrypt and Decrypt User Passwords</td>
-                <td>TryIt Page at: <a href="http://webstrar46.fulton.asu.edu/page10/">http://webstrar46.fulton.asu.edu/page10/</a>. Used in Member Register.</td>
+                <td>public string Encrypt(string plaintext); public string Decrypt(string cyphertext); Used in Member Register and Login.</td>
             </tr>
         </table>
 
