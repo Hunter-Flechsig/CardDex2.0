@@ -59,6 +59,18 @@
                 <td>Uses Symmetric Encryption to Encrypt and Decrypt User Passwords</td>
                 <td>public string Encrypt(string plaintext); public string Decrypt(string cyphertext); Used in Member Register and Login.</td>
             </tr>
+            <tr>
+                <td>Justin Yi</td>
+                <td>User Control (Login)/td>
+                <td>Displays a login window that allows for both Staff and Members to log in, using .xml files to store.</td>
+                <td>private bool ValidateStaff(string username, string eteredPassword); private bool ValidateMember(string username, string enteredPassword); Used in Member and Staff Login.</td>
+            </tr>
+            <tr>
+                <td>Justin Yi</td>
+                <td>Web Service (WSDL)</td>
+                <td>Word Filter Service - A service that can be used to filter out any bank of words. In this case, it is used to censor a username that contains common bad words. - EndPoint: <a href="http://webstrar46.fulton.asu.edu/page8/Service1.svc">http://webstrar46.fulton.asu.edu/page10/Service1.svc</a></td>
+                <td>public string WordFilter(string toFilter), Used in Member and Staff Register.</td>
+            </tr>
         </table>
 
     </div>
