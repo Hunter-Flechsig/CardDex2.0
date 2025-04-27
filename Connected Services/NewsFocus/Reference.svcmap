@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="920d42e9-b7db-40f4-9fed-5195f7d19f7a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://webstrar46.fulton.asu.edu/page10/NewsFocusService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NewsFocusService.xsd" MetadataType="Schema" ID="2df78a56-e784-4d21-88f0-3df8abc77f9f" SourceId="1" SourceUrl="http://webstrar46.fulton.asu.edu/Page10/NewsFocusService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="ee108687-32a0-41fe-9e7a-638f0c61a207" SourceId="1" SourceUrl="http://webstrar46.fulton.asu.edu/Page10/NewsFocusService.svc?wsdl" />
+    <MetadataFile FileName="NewsFocusService1.xsd" MetadataType="Schema" ID="2eda4488-1764-4b8a-b722-e459e11e50b1" SourceId="1" SourceUrl="http://webstrar46.fulton.asu.edu/Page10/NewsFocusService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NewsFocusService2.xsd" MetadataType="Schema" ID="e70d3f6d-0aab-4b09-bf63-f762fdff0909" SourceId="1" SourceUrl="http://webstrar46.fulton.asu.edu/Page10/NewsFocusService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NewsFocusService.disco" MetadataType="Disco" ID="ff76a4fd-80d8-4615-87e4-0c8b64c960c2" SourceId="1" SourceUrl="http://webstrar46.fulton.asu.edu/Page10/NewsFocusService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

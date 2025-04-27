@@ -16,7 +16,7 @@ namespace CardDex2._0
 
         protected void btnMemberSignUp_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("/Member/MemberRegister.aspx");
         }
 
         protected void btnMemberLogin_Click(object sender, EventArgs e)
