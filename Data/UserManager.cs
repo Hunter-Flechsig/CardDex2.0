@@ -5,6 +5,7 @@ using System.Web;
 using System.Xml.Linq;
 using System.IO;
 using PokeFind.Models;
+using DLLLibrary;
 
 namespace CardDex2._0.Data
 {
@@ -119,5 +120,13 @@ namespace CardDex2._0.Data
             return doc.Root.Elements("User")
                      .FirstOrDefault(u => u.Attribute("username")?.Value == username);
         }
-    }
+
+        public bool ValidateMember(string username, string password)
+        {
+            var user = GetUserElement(username);
+            if (user == null) return false;
+            string storedPassword = user.Attribute("password")?.Value;
+            return EncryptionDecryption.Encrypt(password) == storedPassword;
+        }
+        }
 }

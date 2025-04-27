@@ -10,4 +10,10 @@
       <Card Id="sv8-221" Name="Palossand ex" Image="https://images.pokemontcg.io/sv8/221.png" SetName="Surging Sparks" />
     </PokemonCards>
   </User>
+  <User username="hunter" password="kT4JhS8vwz5zeNT/p+i0Bw==">
+    <PokemonCards />
+  </User>
+  <User username="Hunter" password="GYiIIZvgKoRC0POuTA6Z3w==">
+    <PokemonCards />
+  </User>
 </Users>

@@ -18,11 +18,10 @@ namespace CardDex2._0.Member
     {
         private UserManager manager;
         private List<PokemonCard> userCards;
-        private HttpCookie myCookies;
+        private string user;
 
         protected void Page_init(object sender, EventArgs e)
         {
-            myCookies = Request.Cookies["MemberCookie"];
             // Check if the user is logged in
             //if (Session["username"] == null)
             //{
@@ -33,7 +32,7 @@ namespace CardDex2._0.Member
             //lblUsername.Text = Session["username"].ToString();
             manager = new UserManager();
             //userCards = manager.GetPokemonCards("AshKetchum");
-            userCards = manager.GetPokemonCards(myCookies["Username"]);
+            userCards = manager.GetPokemonCards(User.Identity.Name);
             if (userCards.Count == 0)
             {
                 lblremoveError.Text = "No Cards in your Collection";
@@ -50,6 +49,12 @@ namespace CardDex2._0.Member
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Member/MemberLogin.aspx");
+            }
+            user = User.Identity.Name;
+
             if (!IsPostBack)
             {
                 lbladdError.Visible = false;
@@ -84,12 +89,12 @@ namespace CardDex2._0.Member
             if (selectedCard != null)
             {
                 //FetchReturnType result = manager.AddPokemon("AshKetchum", selectedCard);
-                FetchReturnType result = manager.AddPokemon(myCookies["Username"], selectedCard);
+                FetchReturnType result = manager.AddPokemon(user, selectedCard);
                 if (result.success != null)
                 {
                     setErrorLabel($"Added {selectedCard.Name} to your collection.", lbladdError, Color.Green);
                     //userCards = manager.GetPokemonCards("AshKetchum");
-                    userCards = manager.GetPokemonCards(myCookies["Username"]);
+                    userCards = manager.GetPokemonCards(user);
                     ViewCards2.Cards = userCards;
                 }
                 else if (result.error != null)
@@ -111,7 +116,7 @@ namespace CardDex2._0.Member
             if (userCards == null)
             {
                 //userCards = manager.GetPokemonCards("AshKetchum");
-                userCards = manager.GetPokemonCards(myCookies["Username"]);
+                userCards = manager.GetPokemonCards(user);
             }
 
             // Filter cards based on search criteria
@@ -197,7 +202,7 @@ namespace CardDex2._0.Member
             }
 
             //FetchReturnType res = manager.RemovePokemon("AshKetchum", selectedCardId);
-            FetchReturnType res = manager.RemovePokemon(myCookies["Username"], selectedCardId);
+            FetchReturnType res = manager.RemovePokemon(user, selectedCardId);
 
             if (res.error != null)
             {
@@ -207,7 +212,7 @@ namespace CardDex2._0.Member
             {
                 setErrorLabel(res.success, lblremoveError, Color.Green);
                 //userCards = manager.GetPokemonCards("AshKetchum");
-                userCards = manager.GetPokemonCards(myCookies["Username"]);
+                userCards = manager.GetPokemonCards(user);
                 ViewCards2.Cards = userCards;
             }
 
