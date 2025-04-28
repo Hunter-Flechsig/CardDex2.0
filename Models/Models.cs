@@ -30,6 +30,8 @@ namespace PokeFind.Models
         }
     }
 
+
+    // class for representing the return type of the fetch request
     public class FetchReturnType
     {
         public string error;

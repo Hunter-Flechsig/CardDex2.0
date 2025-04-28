@@ -13,6 +13,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
 >
     <div>
     <h2>Member Page Description</h2>
+    <!-- Description of the Member page functionality -->
     <p>The Member page allows users to track the pokemon cards that they own by adding the pokemon cards to the member page.
         The user can toggle add cards to begin adding cards to their account and search for their card from a particular set or 
         by pokemon name. Once the card is added, it will show up under the collection section. The user is able see what 
@@ -20,13 +21,14 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
     </p>
     </div>
   <div style="display: flex; justify-content: center; margin-top: 10px">
-    
+    <!-- Placeholder for additional content -->
   </div>
 
   <!-- Expandable Search Area -->
   <div id="addCardContainer" class="add-card-container" runat="server">
     <h4>Add Pokémon Card</h4>
     <div class="inline-form">
+      <!-- Input for Pokémon name -->
       <asp:TextBox
         ID="txtPokemonName"
         runat="server"
@@ -38,6 +40,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
         autocapitalize="off"
         spellcheck="false"
       />
+      <!-- Input for Pokémon set -->
       <asp:TextBox
         ID="txtSetName"
         runat="server"
@@ -49,6 +52,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
         autocapitalize="off"
         spellcheck="false"
       />
+      <!-- Button to search for Pokémon cards -->
       <asp:Button
         ID="btnSearchPokemon"
         runat="server"
@@ -57,29 +61,34 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
         OnClientClick="showLoadingSpinner();"
         CssClass="search-button"
       />
-        <asp:Button
-          ID="btnAddCard"
-          runat="server"
-          Text="Add Card"
-          onclick="btnAddCard_click"
-          CssClass="search-button"
-        />
+      <!-- Button to add a Pokémon card -->
+      <asp:Button
+        ID="btnAddCard"
+        runat="server"
+        Text="Add Card"
+        onclick="btnAddCard_click"
+        CssClass="search-button"
+      />
     </div>
 
     <asp:UpdatePanel ID="UpdatePanelSearch" runat="server">
       <ContentTemplate>
         <div class="loading">
+          <!-- Label to display search results -->
           <asp:Label
             ID="lblSearchPokemon"
             runat="server"
             CssClass="d-block mb-2"
           />
+          <!-- Loading spinner -->
           <div id="loadingSpinner" style="display: none">
             <div class="loader"></div>
           </div>
         </div>
 
+        <!-- Component to display search results -->
         <uc:ViewCards id="ViewCards1" runat="server" />
+        <!-- Label to display errors when adding cards -->
         <asp:Label
           ID="lbladdError"
           runat="server"
@@ -93,6 +102,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
   <div class="add-card-container">
     <h4>Collection</h4>
     <div class="inline-form">
+      <!-- Input for searching cards by name -->
       <asp:TextBox
         ID="searchUserCardsName"
         runat="server"
@@ -103,16 +113,18 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
         autocapitalize="off"
         spellcheck="false"
       />
-    <asp:TextBox
-          ID="searchUserCardsSet"
-          runat="server"
-          CssClass="form-control"
-          Placeholder="Set"
-          autocomplete="off"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
-        />
+      <!-- Input for searching cards by set -->
+      <asp:TextBox
+        ID="searchUserCardsSet"
+        runat="server"
+        CssClass="form-control"
+        Placeholder="Set"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+      <!-- Button to search the user's collection -->
       <asp:Button
         ID="searchButton"
         runat="server"
@@ -120,31 +132,34 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
         CssClass="search-button"
         onClick="btnSearchCollection_click"
       />
-        <asp:Button
+      <!-- Button to remove a card from the collection -->
+      <asp:Button
         ID="btnRemoveCard"
         runat="server"  
         Text="Remove Card"
         CssClass="search-button"
         onclick="btnRemoveCard_click"
-        />
-        <asp:Button
-          runat="server"
-          id="btnToggleAddCard"
-          class="search-button"
-          onClick="btnToggleAddCard_click"
-          Text="Toggle Add Cards"
-        />
+      />
+      <!-- Button to toggle the add card section -->
+      <asp:Button
+        runat="server"
+        id="btnToggleAddCard"
+        class="search-button"
+        onClick="btnToggleAddCard_click"
+        Text="Toggle Add Cards"
+      />
     </div>
-
 
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
       <ContentTemplate>
+        <!-- Label to display errors when removing cards -->
         <asp:Label
           ID="lblremoveError"
           runat="server"
           Text=""
           CssClass="error-label"
         />
+        <!-- Component to display the user's collection -->
         <uc:ViewCards ID="ViewCards2" runat="server" />
       </ContentTemplate>
       <Triggers>
@@ -155,6 +170,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
   </div>
 
   <style>
+    /* Styling for the add card container */
     .add-card-container {
       border: 1px solid #ccc;
       padding: 20px;
@@ -168,6 +184,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
       text-align: center;
     }
 
+    /* Styling for the card container */
     .card-container {
       max-height: 40vh; /* Restrict max height of the card container */
       overflow-y: auto; /* Allow scrolling for overflowing content */
@@ -177,12 +194,14 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
       background: #fff;
     }
 
+    /* Styling for error labels */
     .error-label {
       font-weight: bold;
       text-align: center;
       transition: opacity 1s ease;
     }
 
+    /* Styling for inline forms */
     .inline-form {
       display: flex;
       gap: 5px;
@@ -192,20 +211,7 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
       margin-bottom: 15px;
     }
 
-    .inline-form input[type="text"] {
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-      min-width: 30%;
-    }
-
-    .inline-form input[type="text"]:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-    }
-
+    /* Styling for search buttons */
     .search-button {
       background-color: #007bff;
       color: white;
@@ -216,65 +222,15 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
       font-size: 14px;
       transition: background-color 0.2s ease;
       display: inline-block;
-
     }
 
     .search-button:hover {
       background-color: #0056b3;
     }
-
-    .form-control {
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-      min-width: 200px;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-    }
-
-    h4 {
-      margin-top: 0; /* Remove top margin */
-      margin-bottom: 10px; /* Reduced bottom margin */
-      font-size: 1.25rem;
-    }
-
-      .card-container label {
-          display: block;
-          font-weight: bold;
-      }
-
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      animation: spin 0.8s linear infinite;
-      display: inline-block;
-    }
-
-    .loading {
-      display: flex;
-      gap: 10px; /* spacing between items */
-      align-items: center;
-      flex-wrap: wrap; /* wrap on small screens */
-    }
-
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
   </style>
 
   <script>
+    // Displays the loading spinner during search
     function showLoadingSpinner() {
       var spinner = document.getElementById("loadingSpinner");
       var label = document.getElementById("<%= lblSearchPokemon.ClientID %>");
@@ -282,9 +238,8 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
       if (spinner) spinner.style.display = "inline-block";
       if (label) label.innerText = "Searching...";
     }
-  </script>
 
-  <script>
+    // Hides a label after a delay
     function hideLabelAfterDelay(id, delay) {
       setTimeout(function () {
         var label = document.getElementById(id);

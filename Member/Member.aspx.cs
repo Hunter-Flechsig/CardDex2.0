@@ -16,78 +16,91 @@ namespace CardDex2._0.Member
 {
     public partial class Member : System.Web.UI.Page
     {
-        private UserManager manager;
-        private List<PokemonCard> userCards;
-        private string user;
+        private UserManager manager; // Manages user-related operations
+        private List<PokemonCard> userCards; // Stores the user's Pokemon cards
+        private string user; // Stores the current user's identity
 
+        // Initializes the page and loads user data
         protected void Page_init(object sender, EventArgs e)
         {
+            // Redirect to login page if the user is not authenticated
             if (!User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/Member/MemberLogin.aspx");
+                Response.Redirect("~/Page1/Member/MemberLogin.aspx");
             }
-            user = User.Identity.Name;
-            manager = new UserManager();
-            //userCards = manager.GetPokemonCards("AshKetchum");
+
+            user = User.Identity.Name; // Get the logged-in user's name
+            manager = new UserManager(); // Initialize the UserManager
+
+            // Load the user's Pokemon cards
             userCards = manager.GetPokemonCards(user);
+
+            // Display a message if no cards are found
             if (userCards.Count == 0)
             {
                 lblremoveError.Text = "No Cards in your Collection";
             }
             else
             {
-                ViewCards2.Cards = userCards;
+                ViewCards2.Cards = userCards; // Bind cards to the view
             }
-            ViewCards1.ContainerHeight = "40vh"; // Set the height of the card container
-            ViewCards2.ContainerHeight = "70vh"; // Set the height of the card container
-            addCardContainer.Visible = false;
-            //}
+
+            // Set container heights for card views
+            ViewCards1.ContainerHeight = "40vh";
+            ViewCards2.ContainerHeight = "70vh";
+
+            addCardContainer.Visible = false; // Hide the add card container by default
         }
 
+        // Handles page load events
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
+                // Hide error labels on initial load
                 lbladdError.Visible = false;
                 lblremoveError.Visible = false;
             }
             else
             {
-                // Show label only if ViewState flag is set
+                // Show error labels based on ViewState flags
                 lbladdError.Visible = ViewState["ShowLabelOnce_lbladdError"] as bool? == true;
                 lblremoveError.Visible = ViewState["ShowLabelOnce_lblremoveError"] as bool? == true;
             }
         }
 
+        // Resets ViewState flags before rendering the page
         protected void Page_PreRender(object sender, EventArgs e)
         {
             ViewState["ShowLabelOnce_lbladdError"] = false;
             ViewState["ShowLabelOnce_lblremoveError"] = false;
         }
 
-
+        // Adds a selected card to the user's collection
         protected void btnAddCard_click(object sender, EventArgs e)
         {
-            string selectedCardId = ViewCards1.SelectedCardId;
-            List<PokemonCard> searchCards = ViewCards1.Cards;
+            string selectedCardId = ViewCards1.SelectedCardId; // Get the selected card ID
+            List<PokemonCard> searchCards = ViewCards1.Cards; // Get the list of cards in the search view
+
+            // Check if a card is selected
             if (string.IsNullOrEmpty(selectedCardId))
             {
                 setErrorLabel("Please select a card to add.", lbladdError, Color.Red);
                 return;
             }
 
+            // Find the selected card
             PokemonCard selectedCard = searchCards.FirstOrDefault(card => card.Id == selectedCardId);
             if (selectedCard != null)
             {
-                //FetchReturnType result = manager.AddPokemon("AshKetchum", selectedCard);
+                // Add the card to the user's collection
                 FetchReturnType result = manager.AddPokemon(user, selectedCard);
+
                 if (result.success != null)
                 {
                     setErrorLabel($"Added {selectedCard.Name} to your collection.", lbladdError, Color.Green);
-                    //userCards = manager.GetPokemonCards("AshKetchum");
-                    userCards = manager.GetPokemonCards(user);
-                    ViewCards2.Cards = userCards;
+                    userCards = manager.GetPokemonCards(user); // Refresh the user's cards
+                    ViewCards2.Cards = userCards; // Update the view
                 }
                 else if (result.error != null)
                 {
@@ -96,18 +109,15 @@ namespace CardDex2._0.Member
             }
         }
 
-        // Update the Contains method calls to use string.IndexOf for case-insensitive comparison
-        // and check if the result is greater than or equal to 0.
-
+        // Searches the user's card collection based on name and set
         protected void btnSearchCollection_click(object sender, EventArgs e)
         {
-            string nameSearch = searchUserCardsName.Text.Trim();
-            string setSearch = searchUserCardsSet.Text.Trim();
+            string nameSearch = searchUserCardsName.Text.Trim(); // Get the name search input
+            string setSearch = searchUserCardsSet.Text.Trim(); // Get the set search input
 
-            // Get all user cards if not already loaded
+            // Load user cards if not already loaded
             if (userCards == null)
             {
-                //userCards = manager.GetPokemonCards("AshKetchum");
                 userCards = manager.GetPokemonCards(user);
             }
 
@@ -124,11 +134,11 @@ namespace CardDex2._0.Member
                 filteredCards = filteredCards.Where(c => c.SetName.IndexOf(setSearch, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            // Convert back to list and update ViewCards2
+            // Update the view with the filtered cards
             var resultCards = filteredCards.ToList();
             ViewCards2.Cards = resultCards;
 
-            // Update the collection label
+            // Display search results
             if (resultCards.Count == 0)
             {
                 lblremoveError.Text = "No cards found matching your search criteria";
@@ -142,38 +152,38 @@ namespace CardDex2._0.Member
             }
         }
 
+        // Sets an error label with a message and color
         private void setErrorLabel(string text, Label label, Color color)
         {
-            ViewState["ShowLabelOnce_" + label.ID] = true;
-            label.Text = text;
-            label.Visible = true;
-            label.ForeColor = color; // Set label color based on the error type
+            ViewState["ShowLabelOnce_" + label.ID] = true; // Set ViewState flag
+            label.Text = text; // Set the label text
+            label.Visible = true; // Make the label visible
+            label.ForeColor = color; // Set the label color
 
-            // Inject JavaScript to hide it after 5 seconds (5000ms)
+            // Inject JavaScript to hide the label after 5 seconds
             ScriptManager.RegisterStartupScript(this, GetType(), $"HideLabel_{label.ID}", "hideLabelAfterDelay('" + label.ClientID + "', 1000);", true);
         }
 
+        // Toggles the visibility of the add card container
         protected void btnToggleAddCard_click(object sender, EventArgs e)
         {
             addCardContainer.Visible = !addCardContainer.Visible;
         }
 
-        string lastBaseSearch = "";
-        string lastNameSearch = "";
+        // Searches for Pokemon cards based on set and name
         protected void btnSearchPokemon_click(object sender, EventArgs e)
         {
-            if (lastBaseSearch == txtSetName.Text && lastNameSearch == txtPokemonName.Text ||
-                (txtSetName.Text.Trim() == "" || txtPokemonName.Text.Trim() == ""))
+            if ((txtSetName.Text.Trim() == "" || txtPokemonName.Text.Trim() == ""))
             {
                 return;
             }
+
             var cards = GetCards(txtSetName.Text, txtPokemonName.Text);
 
             if (cards == null || cards.Count == 0)
             {
                 lblSearchPokemon.Text = "No cards found.";
                 ViewCards1.Cards = null;
-
             }
             else
             {
@@ -182,18 +192,20 @@ namespace CardDex2._0.Member
             }
         }
 
+        // Removes a selected card from the user's collection
         protected void btnRemoveCard_click(object sender, EventArgs e)
         {
-            ;
-            string selectedCardId = ViewCards2.SelectedCardId;
-            List<PokemonCard> userCards = ViewCards2.Cards;
+            string selectedCardId = ViewCards2.SelectedCardId; // Get the selected card ID
+            List<PokemonCard> userCards = ViewCards2.Cards; // Get the user's cards
+
+            // Check if a card is selected
             if (string.IsNullOrEmpty(selectedCardId))
             {
                 setErrorLabel("Please select a card to remove.", lblremoveError, Color.Red);
                 return;
             }
 
-            //FetchReturnType res = manager.RemovePokemon("AshKetchum", selectedCardId);
+            // Remove the card from the user's collection
             FetchReturnType res = manager.RemovePokemon(user, selectedCardId);
 
             if (res.error != null)
@@ -203,45 +215,36 @@ namespace CardDex2._0.Member
             else if (res.success != null)
             {
                 setErrorLabel(res.success, lblremoveError, Color.Green);
-                //userCards = manager.GetPokemonCards("AshKetchum");
-                userCards = manager.GetPokemonCards(user);
-                ViewCards2.Cards = userCards;
+                userCards = manager.GetPokemonCards(user); // Refresh the user's cards
+                ViewCards2.Cards = userCards; // Update the view
             }
-
         }
 
-        private static readonly HttpClient HttpClient = new HttpClient();
+        // Fetches cards from an external API based on set and name
         private List<PokemonCard> GetCards(string set, string name)
         {
-            string encodedSet = Uri.EscapeDataString(set);
-            string encodedName = Uri.EscapeDataString(name);
-            // Construct the API URL using the provided set and name
+            string encodedSet = Uri.EscapeDataString(set); // Encode the set name
+            string encodedName = Uri.EscapeDataString(name); // Encode the card name
+
+            // Construct the API URL
             string url = $"http://webstrar46.fulton.asu.edu/page9/api/PokeFind/{encodedSet}x{encodedName}";
 
-            // Create a new HttpClient to send the GET request
+            // Send a GET request to the API
             using (HttpClient client = new HttpClient())
             {
-                // Send the GET request and wait for the response
                 HttpResponseMessage response = client.GetAsync(url).Result;
 
-                // Check if the response was successful
                 if (response.IsSuccessStatusCode)
                 {
-                    // Read the response content as a string
                     string result = response.Content.ReadAsStringAsync().Result;
-                    // Deserialize the JSON response into a list of CardModel objects and return it
-                    var cards = JsonConvert.DeserializeObject<List<PokemonCard>>(result);
+                    var cards = JsonConvert.DeserializeObject<List<PokemonCard>>(result); // Deserialize the response
                     return cards;
                 }
                 else
                 {
-                    // If the response wasn't successful, return null
-                    return null;
+                    return null; // Return null if the request fails
                 }
             }
         }
     }
-
-
-
 }

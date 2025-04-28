@@ -4,58 +4,72 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div class="testing">
-            <h2>Welcome to CardDex!</h2>
-            <p>
-                CardDex is a web application that allows you to search for and manage your Pokémon card collection. You can add cards, view details, and even get the latest news about Pokémon.
-            </p>
+        <h2>Welcome to CardDex!</h2>
+        <!-- Introduction to the application -->
+        <p>
+            CardDex is a web application that allows you to search for and manage your Pokémon card collection. You can add cards, view details, and even get the latest news about Pokémon.
+        </p>
 
-            <h3>Singing Up:</h3>
+        <h3>Signing Up:</h3>
+        <!-- Instructions for signing up -->
         <p>
             To get started, you can sign up for an account by selecting register. After registering, you can log in to your account to access the member page.
         </p>
+
         <h3>Testing</h3>
+        <!-- Instructions for testing member functionality -->
         <p>
-            (Member Testing) As a member you can add cards to your collecting by pressing add cards then searching for your card by set and name (try charizard and base) 
-            Them you can select a card add it to your collection by pressing add. They will then show up in your collection. 
+            (Member Testing) As a member you can add cards to your collection by pressing add cards, then searching for your card by set and name (try Charizard and Base). 
+            Then you can select a card and add it to your collection by pressing add. They will then show up in your collection. 
             You can also delete from your collection by pressing on a card and selecting the delete button. Your collection will persist even after logging out.
         </p>
 
+        <!-- Instructions for testing staff functionality -->
         <p>
-            (Staff Testing) Staff can login in with their credientials by selecting staff login ( User name: “TA” and Password: Cse445! already in the system) from there you can
+            (Staff Testing) Staff can log in with their credentials by selecting staff login (Username: “TA” and Password: Cse445! already in the system). From there, you can
             add more staff members and then try logging in with them. 
         </p>
 
+        <!-- Authorization testing instructions -->
         <p>
             (Authorization) You will also see that buttons for accessing staff and member pages are not available after logging in. You can test
-            authorization by loggin in as a staff or member then going to there respective pages (Member/Member.aspx or Staff/Staff.aspx).
+            authorization by logging in as a staff or member, then going to their respective pages (Member/Member.aspx or Staff/Staff.aspx).
         </p>
 
+        <!-- News section instructions -->
         <p>
-            (News) Can see pokemon news by cicking on the buttons below. 
+            (News) You can see Pokémon news by clicking on the buttons below. 
         </p>
-
     </div>
+
     <div>
         <h1>Pokemon News</h1>
+        <!-- Buttons to fetch Pokémon news -->
         <asp:Button ID="TCGNewsButton" runat="server" Text="Pokemon TCG" OnClick="TCGNewsButton_Click" />
         <asp:Button ID="PokemonNewsButton" runat="server" Text="Pokemon" OnClick="PokemonNewsButton_Click" />
         <asp:Button ID="PokemonMobileNewsButton" runat="server" Text="Pokemon Mobile" OnClick="PokemonMobileNewsButton_Click" />
         <div>
             <br />
+            <!-- Hyperlinks to display news -->
             <div>
-                <asp:HyperLink ID="HyperLink1" runat="server" Text="UnloadedHyperLink"></asp:HyperLink></div>
+                <asp:HyperLink ID="HyperLink1" runat="server" Text="UnloadedHyperLink"></asp:HyperLink>
+            </div>
             <div>
-                <asp:HyperLink ID="HyperLink2" runat="server" Text="UnloadedHyperLink"></asp:HyperLink></div>
+                <asp:HyperLink ID="HyperLink2" runat="server" Text="UnloadedHyperLink"></asp:HyperLink>
+            </div>
             <div>
-                <asp:HyperLink ID="HyperLink3" runat="server" Text="UnloadedHyperLink"></asp:HyperLink></div>
+                <asp:HyperLink ID="HyperLink3" runat="server" Text="UnloadedHyperLink"></asp:HyperLink>
+            </div>
             <div>
-                <asp:HyperLink ID="HyperLink4" runat="server" Text="UnloadedHyperLink"></asp:HyperLink></div>
+                <asp:HyperLink ID="HyperLink4" runat="server" Text="UnloadedHyperLink"></asp:HyperLink>
+            </div>
             <div>
-                <asp:HyperLink ID="HyperLink5" runat="server" Text="UnloadedHyperLink"></asp:HyperLink></div>
+                <asp:HyperLink ID="HyperLink5" runat="server" Text="UnloadedHyperLink"></asp:HyperLink>
+            </div>
         </div>
 
-
         <h1>Service Directory</h1>
+        <!-- Table summarizing application components -->
         <table>
             <tr>
                 <th colspan="4">Application and Components Summary Table</th>
@@ -66,12 +80,14 @@
                 <th>Description</th>
                 <th>Resources, Methods, and Use</th>
             </tr>
+            <!-- Example row for a component -->
             <tr>
                 <td>Hunter Flechsig</td>
                 <td>User Control</td>
-                <td>Display an array of Pokemon Card Objects. Show its image, name, set, and click on a card to select. Can see and test on member page.</td>
-                <td>C# code behind GUI. Liked to Member page</td>
+                <td>Display an array of Pokémon Card Objects. Show its image, name, set, and click on a card to select. Can see and test on member page.</td>
+                <td>C# code behind GUI. Linked to Member page</td>
             </tr>
+            <!-- Additional rows for other components -->
             <tr>
                 <td>Hunter Flechsig</td>
                 <td>Cookies</td>
@@ -104,8 +120,7 @@
             </tr>
             <tr>
                 <td>Justin Yi</td>
-                <td>
-                User Control (Login)/td>
+                <td>User Control (Login)</td>
                 <td>Displays a login window that allows for both Staff and Members to log in, using .xml files to store.</td>
                 <td>private bool ValidateStaff(string username, string eteredPassword); private bool ValidateMember(string username, string enteredPassword); Used in Member and Staff Login.</td>
             </tr>
@@ -116,8 +131,10 @@
                 <td>public string WordFilter(string toFilter), Used in Member and Staff Register.</td>
             </tr>
         </table>
+
         <div>
             <h3>TryIt Section</h3>
+            <!-- Encryption and decryption testing section -->
             <asp:Label ID="Label1" runat="server" Text="public string Encrypt(string plaintext)"></asp:Label>
             <br />
             <asp:TextBox ID="EncryptTextBox" runat="server"></asp:TextBox>
@@ -135,6 +152,7 @@
     </div>
 
     <style>
+        /* Styling for the table */
         table {
             width: auto;
             border-collapse: separate;
@@ -147,6 +165,7 @@
             border-radius: 8px;
         }
 
+        /* Styling for table cells */
         th, td {
             border-bottom: 1px solid grey;
             padding: 12px;
@@ -154,10 +173,12 @@
             border-right: 1px solid grey;
         }
 
+        /* Remove line under the last row */
         tr:last-child td {
-            border-bottom: none; /* Remove line under last row */
+            border-bottom: none;
         }
 
+        /* Styling for the testing section */
         .testing {
             margin-top: 20px;
             background: white;

@@ -23,7 +23,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
 
                 if (role == "Staff")
                 {
-                    Response.Redirect("~/Staff/Staff.aspx");
+                    Response.Redirect("~/Page1/Staff/Staff.aspx");
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
             if (ValidateStaff(username, password))
             {
                 Utils.SignInUser(username, "Staff", true, Response);
-                Response.Redirect("~/Staff/Staff.aspx");
+                Response.Redirect("~/page1/Staff/Staff.aspx");
             }
             else
             {
@@ -54,19 +54,19 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
 
         private bool ValidateStaff(string username, string enteredPassword)
         {
-                string staffPath = Server.MapPath("~/Data/Staff.xml"); // Replace with actual path
-                XDocument staffDoc = XDocument.Load(staffPath);
-                var staffUser = staffDoc.Root.Elements("User")
-                                     .FirstOrDefault(u => u.Attribute("username")?.Value.Equals(username, StringComparison.OrdinalIgnoreCase) ?? false);
+            string staffPath = Server.MapPath("~/Data/Staff.xml"); // Replace with actual path
+            XDocument staffDoc = XDocument.Load(staffPath);
+            var staffUser = staffDoc.Root.Elements("User")
+                                 .FirstOrDefault(u => u.Attribute("username")?.Value.Equals(username, StringComparison.OrdinalIgnoreCase) ?? false);
 
-                if (staffUser != null)
+            if (staffUser != null)
+            {
+                string storedPassword = staffUser.Attribute("password")?.Value;
+                if (storedPassword == enteredPassword)
                 {
-                    string storedPassword = staffUser.Attribute("password")?.Value;
-                    if (storedPassword == enteredPassword)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+            }
             return false;
         }
     }

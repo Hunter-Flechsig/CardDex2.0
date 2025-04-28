@@ -22,12 +22,12 @@ namespace CardDex2._0.Staff
 
                 if (role != "Staff")
                 {
-                    Response.Redirect("~/Staff/StaffLogin.aspx");
+                    Response.Redirect("~/Page1/Staff/StaffLogin.aspx");
                 }
             }
             else
             {
-                Response.Redirect("~/Staff/StaffLogin.aspx");
+                Response.Redirect("~/Page1/Staff/StaffLogin.aspx");
             }
         }
 
