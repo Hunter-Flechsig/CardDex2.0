@@ -40,17 +40,17 @@ namespace CardDex2._0
 
         protected void btnMemberSignUp_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Member/MemberRegister.aspx");
+            Response.Redirect("~/Member/MemberRegister.aspx");
         }
 
         protected void btnMemberLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Member/MemberLogin.aspx");
+            Response.Redirect("~/Member/MemberLogin.aspx");
         }
 
         protected void btnStaffLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Staff/StaffLogin.aspx");
+            Response.Redirect("~/Staff/StaffLogin.aspx");
         }
 
         protected void btnLogOut_Click(object sender, EventArgs e)
