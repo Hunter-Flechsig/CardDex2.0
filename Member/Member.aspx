@@ -11,6 +11,14 @@ CodeBehind="Member.aspx.cs" Async="true" Inherits="CardDex2._0.Member.Member" %>
   ContentPlaceHolderID="ContentPlaceHolder"
   runat="server"
 >
+    <div>
+    <h2>Member Page Description</h2>
+    <p>The Member page allows users to track the pokemon cards that they own by adding the pokemon cards to the member page.
+        The user can toggle add cards to begin adding cards to their account and search for their card from a particular set or 
+        by pokemon name. Once the card is added, it will show up under the collection section. The user is able see what 
+        cards they have from the collection section, and are be able to remove any cards from the collection associated to their account.
+    </p>
+    </div>
   <div style="display: flex; justify-content: center; margin-top: 10px">
     
   </div>
