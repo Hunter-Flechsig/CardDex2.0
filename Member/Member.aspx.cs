@@ -22,17 +22,14 @@ namespace CardDex2._0.Member
 
         protected void Page_init(object sender, EventArgs e)
         {
-            // Check if the user is logged in
-            //if (Session["username"] == null)
-            //{
-            //    Response.Redirect("~/Login.aspx");
-            //}
-            //else
-            //{
-            //lblUsername.Text = Session["username"].ToString();
+            if (!User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Member/MemberLogin.aspx");
+            }
+            user = User.Identity.Name;
             manager = new UserManager();
             //userCards = manager.GetPokemonCards("AshKetchum");
-            userCards = manager.GetPokemonCards(User.Identity.Name);
+            userCards = manager.GetPokemonCards(user);
             if (userCards.Count == 0)
             {
                 lblremoveError.Text = "No Cards in your Collection";
@@ -49,11 +46,6 @@ namespace CardDex2._0.Member
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!User.Identity.IsAuthenticated)
-            {
-                Response.Redirect("~/Member/MemberLogin.aspx");
-            }
-            user = User.Identity.Name;
 
             if (!IsPostBack)
             {

@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using DLLLibrary;
 using System.Xml.Linq;
 using CardDex2._0.Data;
+using CardDex2._0.Components;
 
 namespace CardDex2._0.Member
 {
@@ -21,14 +22,16 @@ namespace CardDex2._0.Member
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
             {
-                lblMessage.Text = "Welcome to Member Login";
-            }
-            else
-            {
-                //Response.Redirect(FormsAuthentication.DefaultUrl);
-                Response.Redirect("Member/Member.aspx");
+                FormsIdentity id = (FormsIdentity)User.Identity;
+                FormsAuthenticationTicket ticket = id.Ticket;
+                string role = ticket.UserData;
+
+                if (role == "Member")
+                {
+                    Response.Redirect("~/Member/Member.aspx");
+                }
             }
         }
 
@@ -47,16 +50,8 @@ namespace CardDex2._0.Member
             // https://learn.microsoft.com/en-us/dotnet/api/system.web.security.formsauthentication.encrypt?view=netframework-4.8.1 - Tyler
             if (manager.ValidateMember(username, password))
             {
-                ////HttpCookie myCookies = new HttpCookie(FormsAuthentication.FormsCookieName);
-                //HttpCookie myCookies = new HttpCookie("MemberCookie");
-                //myCookies["Username"] = username;
-                //// Says the password in the xml file needs to be encrypted but not necessarily the cookies
-                //myCookies["Password"] = password;
-                //myCookies.Expires = DateTime.Now.AddMinutes(30);
-                //Response.Cookies.Add(myCookies);
-                ////FormsAuthentication.RedirectFromLoginPage(username, true);
-                //Response.Redirect("Member.aspx");
-                FormsAuthentication.RedirectFromLoginPage(username, true);
+                Utils.SignInUser(username, "Member", true, Response);
+                Response.Redirect("~/Member/Member.aspx");
             }
             else
             {

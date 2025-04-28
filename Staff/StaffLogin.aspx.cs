@@ -14,15 +14,16 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //HttpCookie myCookies = Request.Cookies[FormsAuthentication.FormsCookieName];
-            HttpCookie myCookies = Request.Cookies["StaffCookie"];
-            if ((myCookies == null) || (!ValidateStaff(myCookies["Username"], myCookies["Password"]))) {
-                lblMessage.Text = "Welcome to Staff Login";
-            }
-            else
+            if (User.Identity.IsAuthenticated)
             {
-                Response.Redirect("Staff.aspx");
-                //Response.Redirect(FormsAuthentication.DefaultUrl);
+                FormsIdentity id = (FormsIdentity)User.Identity;
+                FormsAuthenticationTicket ticket = id.Ticket;
+                string role = ticket.UserData;
+
+                if (role == "Staff")
+                {
+                    Response.Redirect("~/Staff/Staff.aspx");
+                }
             }
         }
 

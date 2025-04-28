@@ -23,6 +23,7 @@
                    <asp:Button ID="btnMemberSignUp" runat="server" Text="Member Sign Up" CssClass="header-button" OnClick="btnMemberSignUp_Click" />
                    <asp:Button ID="btnMemberLogin" runat="server" Text="Member Login" CssClass="header-button" OnClick="btnMemberLogin_Click" />
                    <asp:Button ID="btnStaffLogin" runat="server" Text="Staff Login" CssClass="header-button" OnClick="btnStaffLogin_Click" />
+                   <asp:Button ID="btnLogOut" runat="server" Text="Logout" CssClass="header-button" OnClick="btnLogOut_Click" />
                </div>
            </header>
            </ContentTemplate>

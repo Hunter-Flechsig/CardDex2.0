@@ -8,20 +8,34 @@ using System.Web.UI.WebControls;
 using DLLLibrary;
 using System.Xml.Linq;
 using Assignment_5;
-using CardDex2._0.WordFilter;
+//using CardDex2._0.WordFilter;
 
 namespace CardDex2._0.Member
 {
     public partial class MemberRegister : System.Web.UI.Page
     {
-        private Service1Client client;
+        //private Service1Client client;
         protected void Page_init(object sender, EventArgs e)
         {
-            client = new Service1Client();
+            //client = new Service1Client();
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (User.Identity.IsAuthenticated)
+            {
+                FormsIdentity id = (FormsIdentity)User.Identity;
+                FormsAuthenticationTicket ticket = id.Ticket;
+                string role = ticket.UserData;
+
+                if (role != "Member")
+                {
+                    Response.Redirect("~/Member/MemberLogin.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Member/MemberLogin.aspx");
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -40,11 +54,11 @@ namespace CardDex2._0.Member
                 lblMessage.Text = "Correct Captcha Required.";
                 return;
             }
-            string filteredUsername = client.WordFilter(username);
-            if (!username.Equals(filteredUsername)) {
-                lblMessage.Text = "Inappropriate Username.";
-                return;
-            }
+            //string filteredUsername = client.WordFilter(username);
+            //if (!username.Equals(filteredUsername)) {
+            //    lblMessage.Text = "Inappropriate Username.";
+            //    return;
+            //}
 
             if (ValidateMember(username))
             {

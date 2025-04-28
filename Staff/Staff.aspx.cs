@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DLLLibrary;
 using System.Xml.Linq;
+using System.Web.Security;
 
 namespace CardDex2._0.Staff
 {
@@ -13,7 +14,21 @@ namespace CardDex2._0.Staff
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                FormsIdentity id = (FormsIdentity)User.Identity;
+                FormsAuthenticationTicket ticket = id.Ticket;
+                string role = ticket.UserData;
 
+                if (role != "Staff")
+                {
+                    Response.Redirect("~/Staff/StaffLogin.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Staff/StaffLogin.aspx");
+            }
         }
 
         protected void CredentialCreateButton_Click(object sender, EventArgs e)
