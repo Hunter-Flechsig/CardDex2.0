@@ -14,7 +14,6 @@ namespace CardDex2._0
         NewsFocusServiceClient client; // Client to interact with the NewsFocus service
 
         // Handles the page load event and initializes the NewsFocus client
-        NewsFocusServiceClient client;
         // inputs particular topics for the news service
         protected void Page_Load(object sender, EventArgs e)
         {
