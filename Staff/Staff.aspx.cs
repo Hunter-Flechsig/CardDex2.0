@@ -14,6 +14,7 @@ namespace CardDex2._0.Staff
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Checks for authentication/ if not go to login
             if (User.Identity.IsAuthenticated)
             {
                 FormsIdentity id = (FormsIdentity)User.Identity;
@@ -33,6 +34,7 @@ namespace CardDex2._0.Staff
 
         protected void CredentialCreateButton_Click(object sender, EventArgs e)
         {
+            // checks if the user name is in teh system already and if the username and password are valid
             string username = StaffUsernameTextBox.Text.Trim();
             string password = StaffPasswordTextBox.Text;
 
@@ -63,6 +65,7 @@ namespace CardDex2._0.Staff
 
         private bool ValidateStaff(string username)
         {
+            // checks for valid username
             string memberPath = Server.MapPath("~/Data/Staff.xml"); // Replace with actual path
 
             XDocument memberDoc = XDocument.Load(memberPath);

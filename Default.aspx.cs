@@ -12,7 +12,7 @@ namespace CardDex2._0
     public partial class Default : System.Web.UI.Page
     {
         NewsFocusServiceClient client;
-
+        // inputs particular topics for the news service
         protected void Page_Load(object sender, EventArgs e)
         {
             client = new NewsFocusServiceClient();
@@ -33,7 +33,7 @@ namespace CardDex2._0
         {
             updateHyperLinks("Pokemon Mobile");
         }
-
+        // updates news service with appropriate links
         private void updateHyperLinks(string topic)
         {
             if (string.IsNullOrEmpty(topic)) { }
@@ -57,7 +57,7 @@ namespace CardDex2._0
             //HyperLink4.Text = titles[3];
             //HyperLink5.Text = titles[4];
         }
-
+        // Used for tryit section for DLL library 
         protected void EncryptButton_Click(object sender, EventArgs e)
         {
             string encryptedText = EncryptionDecryption.Encrypt(EncryptTextBox.Text);

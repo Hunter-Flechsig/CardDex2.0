@@ -13,6 +13,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
 {
     public partial class Login : System.Web.UI.Page
     {
+        // checks if the user is auth, if so go to staff page
         protected void Page_Load(object sender, EventArgs e)
         {
             if (User.Identity.IsAuthenticated)
@@ -30,6 +31,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
+            // checks if user and password are valid
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
@@ -54,6 +56,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
 
         private bool ValidateStaff(string username, string enteredPassword)
         {
+            // checks staff xml for username and password; if the user is there, check if password is correct
                 string staffPath = Server.MapPath("~/Data/Staff.xml"); // Replace with actual path
                 XDocument staffDoc = XDocument.Load(staffPath);
                 var staffUser = staffDoc.Root.Elements("User")
