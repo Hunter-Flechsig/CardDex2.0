@@ -14,6 +14,8 @@ namespace CardDex2._0
         NewsFocusServiceClient client; // Client to interact with the NewsFocus service
 
         // Handles the page load event and initializes the NewsFocus client
+        NewsFocusServiceClient client;
+        // inputs particular topics for the news service
         protected void Page_Load(object sender, EventArgs e)
         {
             client = new NewsFocusServiceClient(); // Initialize the service client
@@ -39,6 +41,7 @@ namespace CardDex2._0
         }
 
         // Updates the hyperlinks on the page with news links for the specified topic
+        // updates news service with appropriate links
         private void updateHyperLinks(string topic)
         {
             if (string.IsNullOrEmpty(topic)) return; // Exit if the topicn is null or empty
@@ -70,6 +73,7 @@ namespace CardDex2._0
         }
 
         // Encrypts the input text and displays the result
+        // Used for tryit section for DLL library 
         protected void EncryptButton_Click(object sender, EventArgs e)
         {
             string encryptedText = EncryptionDecryption.Encrypt(EncryptTextBox.Text); // Encrypt the input text
