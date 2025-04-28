@@ -37,8 +37,14 @@
             <tr>
                 <td>Hunter Flechsig</td>
                 <td>User Control</td>
-                <td>Display an array of Pokemon Card Objects. Show its image, name, set, and click on a card to select</td>
+                <td>Display an array of Pokemon Card Objects. Show its image, name, set, and click on a card to select. Can see and test on member page.</td>
                 <td>C# code behind GUI. Liked to Member page</td>
+            </tr>
+            <tr>
+                <td>Hunter Flechsig</td>
+                <td>Cookies</td>
+                <td>Store auth information including role - Test by: 1. press F12 and navigate to application->storage->cookies 2. login 3. you will now see .ASPXAUTH cookie with your info and now you will be automatically redirected to page as well as header bar changing to reflect you are logged in</td>
+                <td>GUI design and C# code behind GUI using FormsAuthenticationTicket. It is linked to the login page</td>
             </tr>
             <tr>
                 <td>Hunter Flechsig</td>
