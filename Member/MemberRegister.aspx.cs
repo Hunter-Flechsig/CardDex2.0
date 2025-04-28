@@ -27,14 +27,10 @@ namespace CardDex2._0.Member
                 FormsAuthenticationTicket ticket = id.Ticket;
                 string role = ticket.UserData;
 
-                if (role != "Member")
+                if (role == "Member")
                 {
-                    Response.Redirect("~/Member/MemberLogin.aspx");
+                    Response.Redirect("~/Member/Member.aspx");
                 }
-            }
-            else
-            {
-                Response.Redirect("~/Member/MemberLogin.aspx");
             }
         }
 

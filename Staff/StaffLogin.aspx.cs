@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using DLLLibrary;
 using System.Web.UI.WebControls;
+using CardDex2._0.Components;
 // using (insert here); // *** IMPORT YOUR HASHING DLL NAMESPACE ***
 
 namespace CardDex2._0.Login // Make sure this matches your project's namespace
@@ -42,16 +43,8 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
             // https://learn.microsoft.com/en-us/dotnet/api/system.web.security.formsauthentication.encrypt?view=netframework-4.8.1 - Tyler
             if (ValidateStaff(username, password))
             {
-                //HttpCookie myCookies = new HttpCookie(FormsAuthentication.FormsCookieName);
-                HttpCookie myCookies = new HttpCookie("StaffCookie");
-
-                myCookies["Username"] = username;
-                myCookies["Password"] = password;
-                myCookies.Expires = DateTime.Now.AddMinutes(30);
-                Response.Cookies.Add(myCookies);
-                Response.Redirect("Staff.aspx");
-                //Response.Redirect(FormsAuthentication.DefaultUrl);
-                //FormsAuthentication.RedirectFromLoginPage(username, true);
+                Utils.SignInUser(username, "Staff", true, Response);
+                Response.Redirect("~/Staff/Staff.aspx");
             }
             else
             {
