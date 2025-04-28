@@ -8,16 +8,17 @@ using System.Web.UI.WebControls;
 using DLLLibrary;
 using System.Xml.Linq;
 using Assignment_5;
-//using CardDex2._0.WordFilter;
+using CardDex2._0.WordFilter2;
 
 namespace CardDex2._0.Member
 {
     public partial class MemberRegister : System.Web.UI.Page
     {
+        private Service1Client client; // Client to interact with the WordFilter service
         // Initializes the page (currently unused client initialization is commented out)
         protected void Page_init(object sender, EventArgs e)
         {
-            //client = new Service1Client();
+            client = new Service1Client();
         }
 
         // Handles page load events and redirects authenticated users
@@ -33,7 +34,7 @@ namespace CardDex2._0.Member
                 // Redirect to the Member page if the user is a member
                 if (role == "Member")
                 {
-                    Response.Redirect("~/Page1/Member/Member.aspx");
+                    Response.Redirect("~/Member/Member.aspx");
                 }
             }
         }
@@ -60,11 +61,12 @@ namespace CardDex2._0.Member
             }
 
             // Uncommented code for word filtering (currently disabled)
-            //string filteredUsername = client.WordFilter(username);
-            //if (!username.Equals(filteredUsername)) {
-            //    lblMessage.Text = "Inappropriate Username.";
-            //    return;
-            //}
+            string filteredUsername = client.WordFilter(username);
+            if (!username.Equals(filteredUsername))
+            {
+                lblMessage.Text = "Inappropriate Username.";
+                return;
+            }
 
             // Check if the username is valid and not already registered
             if (ValidateMember(username))

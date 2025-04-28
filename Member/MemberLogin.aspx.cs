@@ -35,7 +35,7 @@ namespace CardDex2._0.Member
                 // Redirect to the Member page if the user is a member
                 if (role == "Member")
                 {
-                    Response.Redirect("~/Page1/Member/Member.aspx");
+                    Response.Redirect("~/Member/Member.aspx");
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace CardDex2._0.Member
             {
                 // Sign in the user and redirect to the Member page
                 Utils.SignInUser(username, "Member", true, Response);
-                Response.Redirect("~/Page1/Member/Member.aspx");
+                Response.Redirect("~/Member/Member.aspx");
             }
             else
             {

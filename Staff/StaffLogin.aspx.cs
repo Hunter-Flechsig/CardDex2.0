@@ -24,7 +24,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
 
                 if (role == "Staff")
                 {
-                    Response.Redirect("~/Page1/Staff/Staff.aspx");
+                    Response.Redirect("~/Staff/Staff.aspx");
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace CardDex2._0.Login // Make sure this matches your project's namespace
             if (ValidateStaff(username, password))
             {
                 Utils.SignInUser(username, "Staff", true, Response);
-                Response.Redirect("~/page1/Staff/Staff.aspx");
+                Response.Redirect("~/Staff/Staff.aspx");
             }
             else
             {

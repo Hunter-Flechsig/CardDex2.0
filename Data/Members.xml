@@ -14,6 +14,8 @@
     <PokemonCards />
   </User>
   <User username="Hunter" password="GYiIIZvgKoRC0POuTA6Z3w==">
-    <PokemonCards />
+    <PokemonCards>
+      <Card Id="base4-4" Name="Charizard" Image="https://images.pokemontcg.io/base4/4.png" SetName="Base Set 2" />
+    </PokemonCards>
   </User>
 </Users>

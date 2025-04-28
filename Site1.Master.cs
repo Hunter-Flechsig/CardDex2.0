@@ -41,23 +41,23 @@ namespace CardDex2._0
 
         protected void btnMemberSignUp_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/page1/Member/MemberRegister.aspx");
+            Response.Redirect("~/Member/MemberRegister.aspx");
         }
 
         protected void btnMemberLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/page1/Member/MemberLogin.aspx");
+            Response.Redirect("~/Member/MemberLogin.aspx");
         }
 
         protected void btnStaffLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/page1/Staff/StaffLogin.aspx");
+            Response.Redirect("~/Staff/StaffLogin.aspx");
         }
 
         protected void btnLogOut_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
-            Response.Redirect("~/page1/Default.aspx");
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

@@ -83,6 +83,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\WordFilter2\Service1.disco" />
+    <None Include="Connected Services\WordFilter2\configuration91.svcinfo" />
+    <None Include="Connected Services\WordFilter2\configuration.svcinfo" />
+    <None Include="Connected Services\WordFilter2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Data\Staff.xml" />
     <Content Include="Data\Members.xml" />
     <Content Include="Default.aspx" />
@@ -112,6 +119,11 @@
       <DependentUpon>ViewCards.ascx</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\NewsFocus\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\WordFilter2\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -181,6 +193,13 @@
     </None>
     <None Include="Connected Services\NewsFocus\Service1.wsdl" />
     <Content Include="Member\Web.config" />
+    <None Include="Connected Services\WordFilter2\Service1.wsdl" />
+    <None Include="Connected Services\WordFilter2\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WordFilter2\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Member\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -208,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\NewsFocus\" />
+    <WCFMetadataStorage Include="Connected Services\WordFilter2\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -26,7 +26,7 @@ namespace CardDex2._0.Member
             // Redirect to login page if the user is not authenticated
             if (!User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/Page1/Member/MemberLogin.aspx");
+                Response.Redirect("~/Member/MemberLogin.aspx");
             }
 
             user = User.Identity.Name; // Get the logged-in user's name
