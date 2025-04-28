@@ -3,6 +3,38 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+    <div class="testing">
+            <h2>Welcome to CardDex!</h2>
+            <p>
+                CardDex is a web application that allows you to search for and manage your Pokémon card collection. You can add cards, view details, and even get the latest news about Pokémon.
+            </p>
+
+            <h3>Singing Up:</h3>
+        <p>
+            To get started, you can sign up for an account by selecting register. After registering, you can log in to your account to access the member page.
+        </p>
+        <h3>Testing</h3>
+        <p>
+            (Member Testing) As a member you can add cards to your collecting by pressing add cards then searching for your card by set and name (try charizard and base) 
+            Them you can select a card add it to your collection by pressing add. They will then show up in your collection. 
+            You can also delete from your collection by pressing on a card and selecting the delete button. Your collection will persist even after logging out.
+        </p>
+
+        <p>
+            (Staff Testing) Staff can login in with their credientials by selecting staff login ( User name: “TA” and Password: Cse445! already in the system) from there you can
+            add more staff members and then try logging in with them. 
+        </p>
+
+        <p>
+            (Authorization) You will also see that buttons for accessing staff and member pages are not available after logging in. You can test
+            authorization by loggin in as a staff or member then going to there respective pages (Member/Member.aspx or Staff/Staff.aspx).
+        </p>
+
+        <p>
+            (News) Can see pokemon news by cicking on the buttons below. 
+        </p>
+
+    </div>
     <div>
         <h1>Pokemon News</h1>
         <asp:Button ID="TCGNewsButton" runat="server" Text="Pokemon TCG" OnClick="TCGNewsButton_Click" />
@@ -124,6 +156,14 @@
 
         tr:last-child td {
             border-bottom: none; /* Remove line under last row */
+        }
+
+        .testing {
+            margin-top: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
         }
     </style>
 </asp:Content>
