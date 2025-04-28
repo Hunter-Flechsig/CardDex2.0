@@ -12,7 +12,7 @@
         <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="Label2" runat="server" Text="Password:"></asp:Label>
-        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
         <br />
         <cse:CaptchaControl ID="UserControl" runat="server" />
         <br />

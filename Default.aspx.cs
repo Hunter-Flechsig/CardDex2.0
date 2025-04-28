@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CardDex2._0.NewsFocus;
+using DLLLibrary;
 
 namespace CardDex2._0
 {
@@ -55,6 +56,18 @@ namespace CardDex2._0
             //HyperLink3.Text = titles[2];
             //HyperLink4.Text = titles[3];
             //HyperLink5.Text = titles[4];
+        }
+
+        protected void EncryptButton_Click(object sender, EventArgs e)
+        {
+            string encryptedText = EncryptionDecryption.Encrypt(EncryptTextBox.Text);
+            EncryptResult.Text = "Result: " + encryptedText;
+        }
+
+        protected void DecryptButton_Click(object sender, EventArgs e)
+        {
+            string decryptedText = EncryptionDecryption.Decrypt(DecryptTextBox.Text);
+            DecryptResult.Text = "Result: " + decryptedText;
         }
     }
 }
